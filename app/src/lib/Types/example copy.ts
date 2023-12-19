@@ -4,6 +4,7 @@ type TypeElementGeometryTypeAll = "Point" | "Line" | "Circle";
 
 type TypeElementGeometryTypeThatHasStartEnd = "Line";
 type TypeElementGeometryTypeThatHasRadius = "Circle";
+type TypeElementGeometryTypeThatHasNotRotation = "Point";
 
 type TypeElementGeometryDataPosition<T extends TypeElementGeometryTypeAll> =
   T extends TypeElementGeometryTypeThatHasStartEnd
@@ -15,24 +16,19 @@ type TypeElementGeometryDataPosition<T extends TypeElementGeometryTypeAll> =
 
 type TypeElementGeometryData<T extends TypeElementGeometryTypeAll> = {
   position: TypeElementGeometryDataPosition<T>;
-  rotation: TypeCoordinateXYZ;
-} & (T extends TypeElementGeometryTypeThatHasRadius ? { radius: number } : {});
-
-type TypeProperties = {
-  thickness: number;
-  color: string;
-};
+} & (T extends TypeElementGeometryTypeThatHasRadius      ? { radius: number } : {})
+  & (T extends TypeElementGeometryTypeThatHasNotRotation ? {} : { rotation: TypeCoordinateXYZ });
 
 type TypeElement<T extends TypeElementGeometryTypeAll> = {
   type: "Element";
   geometryType: T;
   geometryData: TypeElementGeometryData<T>;
-  properties: TypeProperties;
+  properties?: TypeProperties;
 };
 
 type TypeGroup = {
   type: "Group";
-  elements: TypeElement<TypeElementGeometryTypeAll>[];
+  elements: TypeElementOrGroup[];
 };
 
 type TypeElementOrGroup = TypeElement<TypeElementGeometryTypeAll> | TypeGroup;
@@ -47,7 +43,20 @@ export type TypeFileStructure = {
   system: {
     projects: TypeProjects;
   };
-  default: { "All": TypeProperties } & {
+  default: { All: TypeProperties } & {
     [propertyName in TypeElementGeometryTypeAll]?: TypeProperties;
   };
+  preferences: {
+    unitOfMeasurement: "mm" | "cm";
+  };
+};
+
+type RGB = `rgb(${string})`;
+type HEX = `#${string}`;
+
+type TypeColor = RGB | HEX;
+
+type TypeProperties = {
+  thickness: number;
+  color: TypeColor;
 };
