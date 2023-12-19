@@ -84,7 +84,7 @@
         },
       },
     },
-    default: {
+    defaults: {
       All: {
         thickness: 1,
         color: "#FF0000",

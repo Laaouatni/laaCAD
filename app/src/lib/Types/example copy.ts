@@ -16,8 +16,20 @@ type TypeElementGeometryDataPosition<T extends TypeElementGeometryTypeAll> =
 
 type TypeElementGeometryData<T extends TypeElementGeometryTypeAll> = {
   position: TypeElementGeometryDataPosition<T>;
-} & (T extends TypeElementGeometryTypeThatHasRadius      ? { radius: number } : {})
-  & (T extends TypeElementGeometryTypeThatHasNotRotation ? {} : { rotation: TypeCoordinateXYZ });
+} & (T extends TypeElementGeometryTypeThatHasRadius ? { radius: number } : {}) &
+  (T extends TypeElementGeometryTypeThatHasNotRotation
+    ? {}
+    : { rotation: TypeCoordinateXYZ });
+
+type RGB = `rgb(${string})`;
+type HEX = `#${string}`;
+
+type TypeColor = RGB | HEX;
+
+type TypeProperties = {
+  thickness: number;
+  color: TypeColor;
+};
 
 type TypeElement<T extends TypeElementGeometryTypeAll> = {
   type: "Element";
@@ -39,24 +51,18 @@ type TypeProjects = {
   };
 };
 
+type TypeDefaults = { All: TypeProperties } & {
+  [propertyName in TypeElementGeometryTypeAll]?: TypeProperties;
+};
+
+type TypePreferences = {
+  unitOfMeasurement: "mm" | "cm";
+};
+
 export type TypeFileStructure = {
   system: {
     projects: TypeProjects;
   };
-  default: { All: TypeProperties } & {
-    [propertyName in TypeElementGeometryTypeAll]?: TypeProperties;
-  };
-  preferences: {
-    unitOfMeasurement: "mm" | "cm";
-  };
-};
-
-type RGB = `rgb(${string})`;
-type HEX = `#${string}`;
-
-type TypeColor = RGB | HEX;
-
-type TypeProperties = {
-  thickness: number;
-  color: TypeColor;
+  defaults: TypeDefaults;
+  preferences: TypePreferences;
 };
