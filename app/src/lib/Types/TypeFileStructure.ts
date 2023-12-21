@@ -1,6 +1,7 @@
 type TypeCoordinateXYZ = { [axisName in "x" | "y" | "z"]: number };
 
 type TypeElementGeometryTypeAll = "Point" | "Line" | "Circle";
+type TypeElementGeometryTypeGroupAll = "Rectangle";
 
 type TypeElementGeometryTypeThatHasStartEnd = "Line";
 type TypeElementGeometryTypeThatHasRadius = "Circle";
@@ -16,8 +17,8 @@ type TypeElementGeometryDataPosition<T extends TypeElementGeometryTypeAll> =
 
 type TypeElementGeometryData<T extends TypeElementGeometryTypeAll> = {
   position: TypeElementGeometryDataPosition<T>;
-} & (T extends TypeElementGeometryTypeThatHasRadius ? { radius: number } : {}) &
-  (T extends TypeElementGeometryTypeThatHasNotRotation
+} & (T extends TypeElementGeometryTypeThatHasRadius ? { radius: number } : {})
+  & (T extends TypeElementGeometryTypeThatHasNotRotation
     ? {}
     : { rotation: TypeCoordinateXYZ });
 
@@ -26,20 +27,16 @@ type HEX = `#${string}`;
 
 type TypeColor = RGB | HEX;
 
-type TypeProperties = {
-  thickness: number;
-  color: TypeColor;
-};
-
 type TypeElement<T extends TypeElementGeometryTypeAll> = {
   type: "Element";
   geometryType: T;
   geometryData: TypeElementGeometryData<T>;
-  properties?: TypeProperties;
+  properties?: TypePropertiesIndividual;
 };
 
 type TypeGroup = {
   type: "Group";
+  geometryType: TypeElementGeometryTypeGroupAll;
   elements: TypeElementOrGroup[];
 };
 
@@ -51,18 +48,33 @@ type TypeProjects = {
   };
 };
 
-type TypeDefaults = { All: TypeProperties } & {
-  [propertyName in TypeElementGeometryTypeAll]?: TypeProperties;
+type TypePropertiesIndividual = {
+  thickness: number;
+  color: TypeColor;
 };
+
+type Optional<T> = {
+  [P in keyof T]?: T[P];
+}
+
+type TypeProperties = { All: TypePropertiesIndividual } & {
+  [propertyName in TypeElementGeometryTypeAll]?: Optional<TypePropertiesIndividual>;
+};
+
+type TypeDefaults = {
+  properties: TypeProperties;
+  preferences: TypePreferences;
+}
 
 type TypePreferences = {
   unitOfMeasurement: "mm" | "cm";
 };
 
-export type TypeFileStructure = {
+type TypeFileStructure = {
   system: {
     projects: TypeProjects;
+    defaults: TypeDefaults
   };
-  defaults: TypeDefaults;
-  preferences: TypePreferences;
 };
+
+export type { TypeFileStructure };
