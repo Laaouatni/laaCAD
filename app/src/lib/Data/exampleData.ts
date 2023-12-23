@@ -6,7 +6,7 @@ export const example: TypeFileStructure = {
       firstProjectName: {
         elements: [
           {
-            type: "Element",
+            type: "CadElement",
             geometryType: "Line",
             geometryData: {
               position: {
@@ -30,7 +30,7 @@ export const example: TypeFileStructure = {
             },
           },
           {
-            type: "Element",
+            type: "CadElement",
             geometryType: "Point",
             geometryData: {
               position: {
@@ -44,7 +44,7 @@ export const example: TypeFileStructure = {
             },
           },
           {
-            type: "Element",
+            type: "CadElement",
             geometryType: "Circle",
             geometryData: {
               position: {
@@ -59,11 +59,11 @@ export const example: TypeFileStructure = {
             },
           },
           {
-            type: "Group",
+            type: "CadGroup",
             geometryType: "Rectangle",
             elements: [
               {
-                type: "Element",
+                type: "CadElement",
                 geometryType: "Line",
                 geometryData: {
                   position: {

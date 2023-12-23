@@ -2,7 +2,7 @@ import type { TypeElementGeometryTypeGroupAll } from "$types/TypeCadComponent/Ty
 import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
 
 type TypeGroup = {
-  type: "Group";
+  type: "CadGroup";
   geometryType: TypeElementGeometryTypeGroupAll;
   elements: TypeElementOrGroup[];
 };
