@@ -13,18 +13,15 @@ export const example: TypeFileStructure = {
                 start: {
                   x: 0,
                   y: 0,
-                  z: 0
                 },
                 end: {
                   x: 100,
                   y: 100,
-                  z: 0
                 },
               },
               rotation: {
                 x: 0,
                 y: 0,
-                z: 0,
               },
             },
             properties: {
@@ -39,12 +36,10 @@ export const example: TypeFileStructure = {
               position: {
                 x: 0,
                 y: 0,
-                z: 0
               },
               rotation: {
                 x: 0,
                 y: 0,
-                z: 0,
               },
             },
           },
@@ -55,13 +50,11 @@ export const example: TypeFileStructure = {
               position: {
                 x: 100,
                 y: 100,
-                z: 0
               },
               radius: 50,
               rotation: {
                 x: 0,
                 y: 0,
-                z: 0,
               },
             },
           },
@@ -77,18 +70,15 @@ export const example: TypeFileStructure = {
                     start: {
                       x: 0,
                       y: 0,
-                      z:0
                     },
                     end: {
                       x: 100,
                       y: 100,
-                      z: 0
                     },
                   },
                   rotation: {
                     x: 0,
                     y: 0,
-                    z: 0,
                   },
                 },
                 properties: {

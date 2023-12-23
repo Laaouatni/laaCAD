@@ -1,0 +1,1 @@
+export type TypeCoordinateXYZ = { [axisName in "x" | "y"]: number };
