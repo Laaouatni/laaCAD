@@ -3,3 +3,5 @@
 
   export let CadElementObj: TypeElement<"Point">;
 </script>
+
+Point 👀
