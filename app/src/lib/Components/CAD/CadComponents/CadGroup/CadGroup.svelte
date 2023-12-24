@@ -1,15 +1,16 @@
 <script lang="ts">
   import Card from "$components/UI/UiCard/UiCard.svelte";
   import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
+  import CadElement from "../CadElement/CadElement.svelte";
   export let childElements: TypeElementOrGroup[];
 </script>
 
-{#each childElements as element}
+{#each childElements as thisElementObj}
   <Card>
-    {#if element.type === "CadGroup"}
-      <svelte:self childElements={element.elements}/>
+    {#if thisElementObj.type === "CadGroup"}
+      <svelte:self childElements={thisElementObj.elements}/>
     {:else}
-      normale 🗣️🗣️
+      <CadElement CadElementObj={thisElementObj}></CadElement>
     {/if}
   </Card>
 {/each}

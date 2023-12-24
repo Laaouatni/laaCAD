@@ -4,9 +4,9 @@
 
   export let projectName: string;
 
-  $: console.log(
-    JSON.stringify($appStore.system.projects[projectName].elements, null, 4),
-  );
+  // $: console.log(
+  //   JSON.stringify($appStore.system.projects[projectName].elements, null, 4),
+  // );
 </script>
 
 <CadGroup childElements={$appStore.system.projects[projectName].elements} />
