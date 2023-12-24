@@ -8,7 +8,7 @@
   <span>i am the view 💀💀💀💀</span>
   
   <Card>
-    {#each Object.entries($appStore.system.projects) as [key, value]}
+    {#each Object.entries($appStore.system.projects) as [key]}
       <CadProject projectName={key} />
     {/each}
   </Card>

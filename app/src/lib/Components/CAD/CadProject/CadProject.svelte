@@ -1,9 +1,12 @@
 <script lang="ts">
+  import CadGroup from "$components/CAD/CadComponents/CadGroup/CadGroup.svelte";
   import { appStore } from "$data/appStore";
-  
+
   export let projectName: string;
-  
-  console.log($appStore.system.projects[projectName]);
+
+  $: console.log(
+    JSON.stringify($appStore.system.projects[projectName].elements, null, 4),
+  );
 </script>
 
-a
+<CadGroup childElements={$appStore.system.projects[projectName].elements} />
