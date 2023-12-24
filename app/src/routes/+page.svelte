@@ -1,5 +1,5 @@
 <script lang="ts">
-  import View from "$lib/Components/View/View.svelte";
+  import CadView from "$components/CAD/CadView/CadView.svelte";
 </script>
 
-<View></View>
+<CadView></CadView>
