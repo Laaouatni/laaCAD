@@ -12,7 +12,7 @@
 </script>
 
 <svg
-  class="border -scale-y-100"
+  class="border border-dashed border-light-400 dark:border-dark-400 -scale-y-100"
   width={viewPort.x}
   height={viewPort.y}
   viewBox={viewBox(projectName)}

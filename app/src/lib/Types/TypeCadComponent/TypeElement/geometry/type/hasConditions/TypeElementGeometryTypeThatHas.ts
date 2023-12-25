@@ -1,6 +1,6 @@
 type TypeElementGeometryTypeThatHasStartEnd = "Line";
 type TypeElementGeometryTypeThatHasRadius = "Circle";
-type TypeElementGeometryTypeThatHasNotRotation = "Point";
+type TypeElementGeometryTypeThatHasNotRotation = never;
 
 export type {
   TypeElementGeometryTypeThatHasStartEnd,

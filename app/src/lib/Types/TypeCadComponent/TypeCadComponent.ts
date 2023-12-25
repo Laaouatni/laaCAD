@@ -1,4 +1,4 @@
-import type { TypeElement } from "./TypeElement/TypeElement";
+import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 import type { TypeGroup } from "$types/TypeCadComponent/TypeGroup/TypeGroup";
 

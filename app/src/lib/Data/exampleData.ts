@@ -128,20 +128,6 @@ export const example: TypeFileStructure = {
                   },
                 },
               },
-              {
-                type: "CadElement",
-                geometryType: "Point",
-                geometryData: {
-                  position: {
-                    x: 0,
-                    y: 0,
-                  },
-                  rotation: {
-                    x: 0,
-                    y: 0,
-                  },
-                },
-              },
             ],
           },
         ],

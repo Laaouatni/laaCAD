@@ -3,14 +3,12 @@
   import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 
   import CadElementLine from "$components/CAD/CadComponents/CadElement/Line/CadElementLine.svelte";
-  import CadElementPoint from "$components/CAD/CadComponents/CadElement/Point/CadElementPoint.svelte";
   import CadElementCircle from "$components/CAD/CadComponents/CadElement/Circle/CadElementCircle.svelte";
 
   export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
 
   const childComponents = {
     Line: CadElementLine,
-    Point: CadElementPoint,
     Circle: CadElementCircle,
   };
 
