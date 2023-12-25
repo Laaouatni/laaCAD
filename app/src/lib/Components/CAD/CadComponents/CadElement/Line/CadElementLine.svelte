@@ -1,7 +1,25 @@
 <script lang="ts">
-  import type {TypeElement} from "$types/TypeCadComponent/TypeElement/TypeElement";
+  import { getElementProperty } from "$logic/getElementProperty";
+  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
 </script>
 
-line 👀
+<line
+  x1={CadElementObj.geometryData.position.start.x}
+  y1={CadElementObj.geometryData.position.start.y}
+  x2={CadElementObj.geometryData.position.end.x}
+  y2={CadElementObj.geometryData.position.end.y}
+  stroke-width={Number(
+    getElementProperty({
+      propertyToFind: "thickness",
+      thisElementObj: CadElementObj,
+    }),
+  )}
+  stroke={String(
+    getElementProperty({
+      propertyToFind: "color",
+      thisElementObj: CadElementObj,
+    }),
+  )}
+></line>

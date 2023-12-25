@@ -5,6 +5,11 @@ type TypePropertiesIndividual = {
   color: TypeColor;
 };
 
+type TypeKeyOfPropertiesIndividual = keyof TypePropertiesIndividual;
+type TypeValueOfPropertiesIndividual<T extends keyof TypePropertiesIndividual> = TypePropertiesIndividual[T];
+
 export type {
-  TypePropertiesIndividual
+  TypePropertiesIndividual,
+  TypeKeyOfPropertiesIndividual,
+  TypeValueOfPropertiesIndividual,
 }

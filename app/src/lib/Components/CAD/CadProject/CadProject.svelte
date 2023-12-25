@@ -9,4 +9,6 @@
   // );
 </script>
 
-<CadGroup childElements={$appStore.system.projects[projectName].elements} />
+<svg class="border" height="100%" width="100%">
+  <CadGroup childElements={$appStore.system.projects[projectName].elements} />
+</svg>
