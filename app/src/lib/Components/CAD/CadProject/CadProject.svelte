@@ -5,6 +5,7 @@
 
   import { viewPort } from "$components/CAD/CadProject/utilities/viewPort";
   import { viewBox } from "$components/CAD/CadProject/utilities/viewBox/viewBox";
+  
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
 
   export let projectName: string;
