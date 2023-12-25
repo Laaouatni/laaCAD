@@ -11,7 +11,7 @@
 </script>
 
 <svg
-  class="border"
+  class="border -scale-y-100"
   width={viewPort.x}
   height={viewPort.y}
   viewBox={viewBox(projectName)}
