@@ -1,5 +1,6 @@
 <script lang="ts">
   import CadGroup from "$components/CAD/CadComponents/CadGroup/CadGroup.svelte";
+  
   import { appStore } from "$data/appStore";
 
   import { viewPort } from "$components/CAD/CadProject/utilities/viewPort";
@@ -13,7 +14,7 @@
   class="border"
   width={viewPort.x}
   height={viewPort.y}
-  {viewBox}
+  viewBox={viewBox(projectName)}
   {preserveAspectRatio}
 >
   <CadGroup childElements={$appStore.system.projects[projectName].elements} />

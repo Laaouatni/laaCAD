@@ -1,10 +1,10 @@
 type TypeViewPortProp = {
-  [axis in "x" | "y"]: number | `${number}%` | "auto";
+  [axis in "x" | "y"]: number | `${number}%`;
 }
 
 const viewPort: TypeViewPortProp = {
   x: "100%",
-  y: "auto",
+  y: "100%",
 };
 
 export { viewPort };
