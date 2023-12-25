@@ -11,7 +11,7 @@ export const example: TypeFileStructure = {
             geometryData: {
               position: {
                 start: {
-                  x: 0,
+                  x: -50,
                   y: 0,
                 },
                 end: {

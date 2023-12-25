@@ -4,24 +4,30 @@ import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElemen
 import { get } from "svelte/store";
 import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeCoordinate/TypeCoordinate";
 
-function viewBox(projectNameId: string) {
+function viewBox(projectNameId: string): string {
   const projectElementsObj =
     get(appStore).system.projects[projectNameId].elements;
 
   const allXvalues = getAllValuesThatHaveSameKey(projectElementsObj, "x");
   const allYvalues = getAllValuesThatHaveSameKey(projectElementsObj, "y");
 
-  return Object.values({
-    start: Object.values({
-      x: Math.min(...allXvalues),
-      y: Math.min(...allYvalues),
-    }).join(" "),
-    end: Object.values({
-      x: Math.max(...allXvalues),
-      y: Math.max(...allYvalues),
-    }).join(" "),
-  }).join(" ");
-}
+  const startObj = {
+    x: Math.min(...allXvalues),
+    y: Math.min(...allYvalues),
+  };
+
+  const endObj = {
+    x: Math.max(...allXvalues) - startObj.x,
+    y: Math.max(...allYvalues) - startObj.y,
+  };
+
+  const startEndObj = {
+    start: Object.values(startObj).join(" "),
+    end: Object.values(endObj).join(" ")
+  }
+
+  return Object.values(startEndObj).join(" ");
+};
 
 function getAllValuesThatHaveSameKey(
   elementsArray: TypeElementOrGroup[],
