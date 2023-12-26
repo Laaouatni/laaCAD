@@ -63,7 +63,64 @@ export const example: TypeFileStructure = {
           {
             type: "CadGroup",
             geometryType: "Rectangle",
-            elements: [
+            elements: [ 
+              {
+                type: "CadElement",
+                geometryType: "Circle",
+                geometryData: {
+                  position: {
+                    x: 400,
+                    y: 0,
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                  },
+                  radius: 50,
+                },
+                properties: {
+                  thickness: 5,
+                  color: "#FF0000",
+                },
+              },
+              {
+                type: "CadElement",
+                geometryType: "Circle",
+                geometryData: {
+                  position: {
+                    x: -50,
+                    y: -100,
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                  },
+                  radius: 50,
+                },
+                properties: {
+                  thickness: 5,
+                  color: "#FF0000",
+                },
+              },
+              {
+                type: "CadElement",
+                geometryType: "Circle",
+                geometryData: {
+                  position: {
+                    x: -50,
+                    y: 400,
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                  },
+                  radius: 50,
+                },
+                properties: {
+                  thickness: 5,
+                  color: "#FF0000",
+                },
+              },
               {
                 type: "CadElement",
                 geometryType: "Line",

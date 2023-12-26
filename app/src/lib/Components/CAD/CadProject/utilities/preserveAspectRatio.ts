@@ -1,8 +1,15 @@
 import { positioning } from "$components/CAD/CadProject/utilities/positioning";
 
-const preserveAspectRatio = Object.values({
-  centerViewBoxInsideViewPort: `x${positioning.choosedPosition.x}Y${positioning.choosedPosition.y}`,
+type TypePreserveAspectRatio = {
+  positionOfViewBoxInsideViewPort: string;
+  implementScaling: "meet" | "slice" | "none";
+};
+
+const preserveAspectRatioObject: TypePreserveAspectRatio = {
+  positionOfViewBoxInsideViewPort: `x${positioning.choosedPosition.x}Y${positioning.choosedPosition.y}`,
   implementScaling: "meet",
-}).join(" ");
+};
+
+const preserveAspectRatio = Object.values(preserveAspectRatioObject).join(" ");
 
 export { preserveAspectRatio };

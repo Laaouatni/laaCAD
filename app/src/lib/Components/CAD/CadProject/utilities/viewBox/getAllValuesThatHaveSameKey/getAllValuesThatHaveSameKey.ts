@@ -1,6 +1,9 @@
 import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
-import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
-import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeCoordinate/TypeCoordinate";
+import {
+  pushAllValuesLine,
+  pushAllValuesCircle,
+  type TypePushAllValuesElementFunctionProps,
+} from "$components/CAD/CadProject/utilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
 
 function getAllValuesThatHaveSameKey(
   elementsArray: TypeElementOrGroup[],
@@ -10,23 +13,18 @@ function getAllValuesThatHaveSameKey(
 
   elementsArray.forEach((thisElement) => {
     if (thisElement.type === "CadElement") {
-      if (thisElement.geometryType === "Line") {
-        const thisLineElement = thisElement as TypeElement<"Line">;
-        const thisPositionObj = thisLineElement.geometryData.position;
-
-        const startValue =
-          thisPositionObj.start[keyToFind as keyof TypeCoordinateXYZ];
-        const endValue =
-          thisPositionObj.end[keyToFind as keyof TypeCoordinateXYZ];
-
-        output.push(startValue);
-        output.push(endValue);
-      } else {
-        output.push(
-          thisElement.geometryData.position[
-            keyToFind as keyof TypeCoordinateXYZ
-          ],
-        );
+      const pushAllValuesElementFunctionProps: TypePushAllValuesElementFunctionProps =
+        { thisElement, keyToFind, output };
+      
+      switch (thisElement.geometryType) {
+        case "Line":
+          pushAllValuesLine(pushAllValuesElementFunctionProps);
+          break;
+        case "Circle":
+          pushAllValuesCircle(pushAllValuesElementFunctionProps);
+          break;
+        default:
+          return new Error("did you created a new element? it's seems that the logic of your app contains a new one and you didn't add the logic about that")
       }
     }
 

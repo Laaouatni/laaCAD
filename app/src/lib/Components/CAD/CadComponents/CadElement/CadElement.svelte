@@ -16,9 +16,4 @@
     childComponents[CadElementObj.geometryType as keyof typeof childComponents];
 </script>
 
-<!-- I know...
-  don't touch this, is correct, 
-  it is just typescript that complains. 
-  I don't want to make my code complex just because of typescript 
--->
 <svelte:component this={choosedComponent} {CadElementObj} />
