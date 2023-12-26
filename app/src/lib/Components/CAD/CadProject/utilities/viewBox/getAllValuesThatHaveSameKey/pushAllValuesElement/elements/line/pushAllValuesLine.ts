@@ -1,6 +1,7 @@
 import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
 import type { TypePushAllValuesElementFunctionProps } from "$components/CAD/CadProject/utilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
+import { getElementProperty } from "$logic/getElementProperty";
 
 function pushAllValuesLine(props: TypePushAllValuesElementFunctionProps) {
   const thisLineElement = props.thisElement as TypeElement<"Line">;
@@ -11,8 +12,18 @@ function pushAllValuesLine(props: TypePushAllValuesElementFunctionProps) {
   const endValue =
     thisPositionObj.end[props.keyToFind as keyof TypeCoordinateXYZ];
 
-  props.output.push(startValue);
-  props.output.push(endValue);
+  const thicknessValue = Number(
+    getElementProperty({
+      thisElementObj: thisLineElement,
+      propertyToFind: "thickness",
+    }),
+  ) / 2;
+
+  props.output.push(startValue + thicknessValue);
+  props.output.push(startValue - thicknessValue);
+
+  props.output.push(endValue + thicknessValue);
+  props.output.push(endValue - thicknessValue);
 }
 
 export { pushAllValuesLine };
