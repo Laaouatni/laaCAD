@@ -1,10 +1,11 @@
-import type { TypeFileStructure } from "$lib/Types/TypeFileStructure";
+import type { TypeFileStructure } from "$types/TypeFileStructure";
+import { getElementsWithNewGeneratedIds } from "$logic/getElementWithNewGeneratedIds";
 
 export const example: TypeFileStructure = {
   system: {
     projects: {
       firstProjectName: {
-        elements: [
+        elements: getElementsWithNewGeneratedIds([
           {
             type: "CadElement",
             geometryType: "Line",
@@ -187,13 +188,13 @@ export const example: TypeFileStructure = {
               },
             ],
           },
-        ],
+        ]),
       },
     },
     defaults: {
       properties: {
         "All": {
-          thickness: 1,
+          thickness: 3,
           color: "#000000",
         },
       },

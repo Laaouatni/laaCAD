@@ -3,6 +3,7 @@ import type { TypeElementGeometryData } from "$types/TypeCadComponent/TypeElemen
 import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 
 export type TypeElement<T extends TypeElementGeometryTypeAll> = {
+  id: `group-${number}-element-${number}`;
   type: "CadElement";
   geometryType: T;
   geometryData: TypeElementGeometryData<T>;

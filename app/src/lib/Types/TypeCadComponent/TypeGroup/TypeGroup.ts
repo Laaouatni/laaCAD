@@ -2,6 +2,7 @@ import type { TypeElementGeometryTypeGroupAll } from "$types/TypeCadComponent/Ty
 import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
 
 type TypeGroup = {
+  id: `group-${number}`;
   type: "CadGroup";
   geometryType: TypeElementGeometryTypeGroupAll;
   elements: TypeElementOrGroup[];

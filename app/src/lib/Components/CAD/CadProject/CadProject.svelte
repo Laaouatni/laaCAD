@@ -9,6 +9,8 @@
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
 
   export let projectName: string;
+
+  $: console.log($appStore)
 </script>
 
 <svg
