@@ -10,7 +10,7 @@
 
   export let projectName: string;
 
-  let viewBox: string;
+  let viewBox: string
 
   $: if($appStore.system.projects[projectName]) {
     viewBox = viewBoxFunction(projectName);
