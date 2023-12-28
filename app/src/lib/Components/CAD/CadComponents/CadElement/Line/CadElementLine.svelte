@@ -1,19 +1,24 @@
 <script lang="ts">
+  import { appStore } from "$data/appStore";
   import { getElementProperty } from "$logic/getElementProperty";
+  import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
+  export let projectName: string;
 
   function updateCadElementEventListenerState() {
-    document.dispatchEvent(
-      new CustomEvent("onCadElementObjUpdate", {detail: CadElementObj}),
-    );
-  }
+    $appStore.system.projects[projectName].elements =
+      replaceElementInTheRightPosition(
+        $appStore.system.projects[projectName].elements,
+        CadElementObj,
+      );
+  };
 
   function handleMouseOver() {
     CadElementObj.geometryData.position.start.x += 40;
     updateCadElementEventListenerState();
-  }
+  };
 </script>
 
 <line
