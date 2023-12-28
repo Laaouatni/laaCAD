@@ -2,14 +2,17 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
-  import { CadElementObjState } from "$components/CAD/CadComponents/CadElement/CadElement.svelte";
-
   export let CadElementObj: TypeElement<"Line">;
 
-  const thisState = new CadElementObjState(CadElementObj);
+  function updateCadElementEventListenerState() {
+    document.dispatchEvent(
+      new CustomEvent("onCadElementObjUpdate", CadElementObj),
+    );
+  }
 
-  $: if (CadElementObj.geometryData) {
-    console.log("saaa");
+  function handleMouseOver() {
+    CadElementObj.geometryData.position.start.x += 40;
+    updateCadElementEventListenerState();
   }
 </script>
 
@@ -31,8 +34,5 @@
       thisElementObj: CadElementObj,
     }),
   )}
-  on:mouseover={() => {
-    CadElementObj.geometryData.position.start.x += 40;
-    thisState.CadUpdate();
-  }}
+  on:mouseover={handleMouseOver}
 ></line>
