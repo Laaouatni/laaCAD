@@ -4,24 +4,24 @@ import type { TypeGroup } from "$types/TypeCadComponent/TypeGroup/TypeGroup";
 
 import { appStore } from "$data/appStore";
 import { get } from "svelte/store";
+import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
 
 function setValueOfCadElementReference(
   id: TypeElement<TypeElementGeometryTypeAll>["id"] | TypeGroup["id"],
   projectName: string,
   value: any,
 ): any {
-  const project = get(appStore).system.projects[projectName];
-  const element = recursive(project.elements);
+  const element = recursive(get(appStore).system.projects[projectName].elements);
 
   function recursive(elements: any[]): any {
-    for (const element of elements) {
-      if (element.id === id) {
+    for(let i = 0; i < elements.length; i++) {
+      if (elements[i].id === id) {
         Object.entries(value).forEach(([key, value]) => {
-          element[key] = value;
+          elements[i][key] = value;
         });
-        return element;
+        return elements[i];
       }
-      if (element.type === "CadGroup") return recursive(element.elements);
+      if (elements[i].type === "CadGroup") return recursive(elements[i].elements);
     }
   }
 }
