@@ -4,6 +4,7 @@
 
   import CadElementLine from "$components/CAD/CadComponents/CadElement/Line/CadElementLine.svelte";
   import CadElementCircle from "$components/CAD/CadComponents/CadElement/Circle/CadElementCircle.svelte";
+  
   import { onMount } from "svelte";
   import { appStore } from "$data/appStore";
 
@@ -22,7 +23,7 @@
 
   onMount(() => {
     document.addEventListener("onCadElementObjUpdate", (event) => {
-      const updatedElement = event;
+      const updatedElement = (event as CustomEvent).detail;
       const modifiedElements = replaceElementInTheRightPosition(
         $appStore.system.projects[projectName].elements,
         updatedElement,

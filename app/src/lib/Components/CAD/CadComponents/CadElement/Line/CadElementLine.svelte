@@ -6,7 +6,7 @@
 
   function updateCadElementEventListenerState() {
     document.dispatchEvent(
-      new CustomEvent("onCadElementObjUpdate", CadElementObj),
+      new CustomEvent("onCadElementObjUpdate", {detail: CadElementObj}),
     );
   }
 
