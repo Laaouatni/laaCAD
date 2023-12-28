@@ -1,17 +1,8 @@
 <script lang="ts">
   import { getElementProperty } from "$logic/getElementProperty";
-  import { setValueOfCadElementReference } from "$logic/setValueOfCadElementReference";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
-
-  $: if (CadElementObj) {
-    setValueOfCadElementReference(
-      CadElementObj.id,
-      "firstProjectName",
-      CadElementObj,
-    );
-  }
 </script>
 
 <line
@@ -34,5 +25,6 @@
   )}
   on:mouseenter={() => {
     CadElementObj.geometryData.position.start.x += 30;
+    console.log("hover")
   }}
 ></line>

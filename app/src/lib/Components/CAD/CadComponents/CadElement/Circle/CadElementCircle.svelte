@@ -6,6 +6,7 @@
 </script>
 
 <circle
+  id={CadElementObj.id}
   fill={"none"}
   cx={CadElementObj.geometryData.position.x}
   cy={CadElementObj.geometryData.position.y}

@@ -4,21 +4,25 @@
   import { appStore } from "$data/appStore";
 
   import { viewPort } from "$components/CAD/CadProject/utilities/viewPort";
-  import { viewBox } from "$components/CAD/CadProject/utilities/viewBox/viewBox";
+  import { viewBox as viewBoxFunction } from "$components/CAD/CadProject/utilities/viewBox/viewBox";
   
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
 
   export let projectName: string;
 
-  $: console.log($appStore)
+  let viewBox: string;
+
+  $: if($appStore.system.projects[projectName]) {
+    viewBox = viewBoxFunction(projectName);
+  }
 </script>
 
 <svg
   class="border border-dashed border-light-400 dark:border-dark-400 -scale-y-100"
   width={viewPort.x}
   height={viewPort.y}
-  viewBox={viewBox(projectName)}
+  {viewBox}
   {preserveAspectRatio}
 >
-  <CadGroup childElements={$appStore.system.projects[projectName].elements} />
+  <CadGroup childElements={$appStore.system.projects[projectName].elements} {projectName} />
 </svg>
