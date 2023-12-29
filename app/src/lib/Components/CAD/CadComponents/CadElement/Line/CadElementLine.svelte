@@ -1,8 +1,12 @@
 <script lang="ts">
-  import CadElementLinePointRects from "$components/CAD/CadComponents/CadElement/Line/pointRect/CadElementLinePointRects.svelte";
   import { getElementProperty } from "$logic/getElementProperty";
+  import CadRect from "$components/CAD/CadComponents/CadOther/CadRect/CadRect.svelte";
 
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+
+  $: possiblePositions = Object.keys(
+    CadElementObj.geometryData.position,
+  ) as Array<keyof typeof CadElementObj.geometryData.position>;
 
   export let CadElementObj: TypeElement<"Line">;
 </script>
@@ -27,4 +31,11 @@
   )}
 ></line>
 
-<CadElementLinePointRects {CadElementObj}></CadElementLinePointRects>
+{#each possiblePositions as thisPossiblePosition}
+  <CadRect
+    class={thisPossiblePosition}
+    {CadElementObj}
+    x={CadElementObj.geometryData.position[thisPossiblePosition].x}
+    y={CadElementObj.geometryData.position[thisPossiblePosition].y}
+  ></CadRect>
+{/each}

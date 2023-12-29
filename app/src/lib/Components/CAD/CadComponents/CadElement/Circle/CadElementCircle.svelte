@@ -1,7 +1,7 @@
 <script lang="ts">
-  import CadElementCirclePointRect from "$components/CAD/CadComponents/CadElement/Circle/pointRect/CadElementCirclePointRect.svelte";
   import { getElementProperty } from "$logic/getElementProperty";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+  import CadRect from "$components/CAD/CadComponents/CadOther/CadRect/CadRect.svelte";
 
   export let CadElementObj: TypeElement<"Circle">;
 </script>
@@ -26,4 +26,8 @@
   )}
 ></circle>
 
-<CadElementCirclePointRect {CadElementObj}></CadElementCirclePointRect>
+<CadRect
+  {CadElementObj}
+  x={CadElementObj.geometryData.position.x}
+  y={CadElementObj.geometryData.position.y}
+></CadRect>

@@ -5,8 +5,6 @@
 </script>
 
 <Card class="border border-black w-full h-full">
-  <span>i am the view 💀💀💀💀</span>
-
   {#each Object.entries($appStore.system.projects) as [key]}
     <Card>
       <CadProject projectName={key} />
