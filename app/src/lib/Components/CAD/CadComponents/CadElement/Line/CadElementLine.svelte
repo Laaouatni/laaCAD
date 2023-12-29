@@ -3,6 +3,7 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+  import { onMount } from "svelte";
 
   export let CadElementObj: TypeElement<"Line">;
   export let projectName: string;
@@ -14,9 +15,23 @@
         CadElementObj,
       );
   }
+
+  let htmlLineElement: SVGLineElement;
+
+  $: svg = htmlLineElement
+    ? (htmlLineElement.closest("svg") as SVGSVGElement)
+    : null;
+  $: pt = svg ? svg.createSVGPoint() : null;
+
+  function cursorPoint(evt: MouseEvent, svg: SVGSVGElement, pt: DOMPoint) {
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
 </script>
 
 <line
+  bind:this={htmlLineElement}
   id={CadElementObj.id}
   x1={CadElementObj.geometryData.position.start.x}
   y1={CadElementObj.geometryData.position.start.y}
@@ -34,4 +49,9 @@
       thisElementObj: CadElementObj,
     }),
   )}
+  on:mousemove={(e) => {
+    let pos = cursorPoint(e, svg, pt);
+    CadElementObj.geometryData.position.start.x = pos.x;
+    CadElementObj.geometryData.position.start.y = pos.y;
+  }}
 ></line>
