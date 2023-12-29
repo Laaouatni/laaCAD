@@ -6,7 +6,6 @@
   import CadElementCircle from "$components/CAD/CadComponents/CadElement/Circle/CadElementCircle.svelte";
 
   export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
-  export let projectName: string;
 
   const childComponents = {
     Line: CadElementLine,
@@ -17,4 +16,4 @@
     childComponents[CadElementObj.geometryType as keyof typeof childComponents];
 </script>
 
-<svelte:component this={choosedComponent} {CadElementObj} {projectName} />
+<svelte:component this={choosedComponent} {CadElementObj} />

@@ -27,6 +27,12 @@
     $lastSelectedLineStore.pointToMove = (e.currentTarget as SVGRectElement)
       .classList[0] as keyof typeof CadElementObj.geometryData.position;
   }
+
+  function handleOnMouseUp(e: MouseEvent) {
+    Object.keys($lastSelectedLineStore).forEach((key) => {
+      $lastSelectedLineStore[key as keyof typeof $lastSelectedLineStore] = null;
+    });
+  }
 </script>
 
 {#each possiblePositions as thisPossiblePosition}
@@ -38,10 +44,11 @@
     stroke-width={lineThickness}
     stroke="orange"
     x={CadElementObj.geometryData.position[thisPossiblePosition].x -
-      (heightWidth / 2)}
+      heightWidth / 2}
     y={CadElementObj.geometryData.position[thisPossiblePosition].y -
-      (heightWidth / 2)}
+      heightWidth / 2}
     rx={lineThickness}
     on:mousedown={handleOnMouseDown}
+    on:mouseup={handleOnMouseUp}
   ></rect>
 {/each}

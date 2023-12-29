@@ -7,7 +7,10 @@
   import { viewBox as viewBoxFunction } from "$components/CAD/CadProject/utilities/viewBox/viewBox";
 
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
+
   import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
+  import { lastSelectedCircleStore } from "$data/selected/circle/lastSelectedCircleStore";
+
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
 
@@ -40,13 +43,12 @@
   function handleMouseMove(e: MouseEvent) {
     const mousePosition = cursorPoint(e);
     const isLeftMouseButtonPressed = e.buttons === 1;
+    const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
 
     if (isLeftMouseButtonPressed) {
       if (
-        Object.values($lastSelectedLineStore).every((el) => el !== undefined)
+        Object.values($lastSelectedLineStore).every((el) => el != undefined)
       ) {
-        const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
-
         axis.forEach((axisName) => {
           $lastSelectedLineStore.dataElement.geometryData.position[
             $lastSelectedLineStore.pointToMove
@@ -57,6 +59,21 @@
           replaceElementInTheRightPosition(
             $appStore.system.projects[projectName].elements,
             $lastSelectedLineStore.dataElement,
+          );
+      }
+
+      if (
+        Object.values($lastSelectedCircleStore).every((el) => el != undefined)
+      ) {
+        axis.forEach((axisName) => {
+          $lastSelectedCircleStore.dataElement.geometryData.position[axisName] =
+            mousePosition?.[axisName] ?? 0;
+        });
+
+        $appStore.system.projects[projectName].elements =
+          replaceElementInTheRightPosition(
+            $appStore.system.projects[projectName].elements,
+            $lastSelectedCircleStore.dataElement,
           );
       }
     }
@@ -76,6 +93,5 @@
 >
   <CadGroup
     childElements={$appStore.system.projects[projectName].elements}
-    {projectName}
   />
 </svg>

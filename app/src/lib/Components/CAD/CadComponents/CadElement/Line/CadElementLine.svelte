@@ -5,15 +5,6 @@
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
-  export let projectName: string;
-
-  // function updateCadElementEventListenerState() {
-  //   $appStore.system.projects[projectName].elements =
-  //     replaceElementInTheRightPosition(
-  //       $appStore.system.projects[projectName].elements,
-  //       CadElementObj,
-  //     );
-  // }
 </script>
 
 <line
