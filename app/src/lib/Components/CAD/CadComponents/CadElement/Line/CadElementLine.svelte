@@ -1,22 +1,20 @@
 <script lang="ts">
-  import { appStore } from "$data/appStore";
+  import CadElementLinePointRects from "./pointRect/CadElementLinePointRects.svelte";
+
   import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
-
   import { getElementProperty } from "$logic/getElementProperty";
-  import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
-
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
   export let projectName: string;
 
-  function updateCadElementEventListenerState() {
-    $appStore.system.projects[projectName].elements =
-      replaceElementInTheRightPosition(
-        $appStore.system.projects[projectName].elements,
-        CadElementObj,
-      );
-  }
+  // function updateCadElementEventListenerState() {
+  //   $appStore.system.projects[projectName].elements =
+  //     replaceElementInTheRightPosition(
+  //       $appStore.system.projects[projectName].elements,
+  //       CadElementObj,
+  //     );
+  // }
 
   function handleMouseEnter(e: MouseEvent) {
     $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
@@ -45,3 +43,5 @@
   )}
   on:mouseenter={handleMouseEnter}
 ></line>
+
+<CadElementLinePointRects {CadElementObj}></CadElementLinePointRects>

@@ -9,6 +9,7 @@
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
   import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
+  import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
 
   export let projectName: string;
 
@@ -40,10 +41,12 @@
     const mousePosition = cursorPoint(e);
 
     if (Object.values($lastSelectedLineStore).every((el) => el !== undefined)) {
-      ["x", "y"].forEach((axisName) => {
+      const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
+
+      axis.forEach((axisName) => {
         $lastSelectedLineStore.dataElement.geometryData.position[
           $lastSelectedLineStore.pointToMove
-        ][axisName] = mousePosition[axisName] ?? 0;
+        ][axisName] = mousePosition?.[axisName] ?? 0;
       });
 
       $appStore.system.projects[projectName].elements =

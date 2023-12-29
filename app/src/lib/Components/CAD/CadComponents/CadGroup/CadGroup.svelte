@@ -6,12 +6,12 @@
   export let projectName: string;
 </script>
 
-<g>
-  {#each childElements as thisElementObj}
+{#each childElements as thisElementObj}
+  <g class="{thisElementObj.type}-{thisElementObj.geometryType}">
     {#if thisElementObj.type === "CadGroup"}
       <svelte:self childElements={thisElementObj.elements} {projectName} />
     {:else}
       <CadElement CadElementObj={thisElementObj} {projectName}></CadElement>
     {/if}
-  {/each}
-</g>
+  </g>
+{/each}
