@@ -21,6 +21,7 @@
   function handleMouseEnter(e: MouseEvent) {
     $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
     $lastSelectedLineStore.dataElement = CadElementObj;
+    $lastSelectedLineStore.pointToMove = "end"; // it need to be automatic
   }
 </script>
 

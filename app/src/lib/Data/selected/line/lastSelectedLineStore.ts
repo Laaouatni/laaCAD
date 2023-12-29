@@ -1,13 +1,15 @@
 import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 import { writable } from "svelte/store";
-import type { Optional } from "$types/Utilities/Optional/Optional";
 
 export type TypeSelectedLineStore = {
+  $lastSelectedLineStore: any;
   htmlElement: SVGLineElement;
   dataElement: TypeElement<"Line">;
+  pointToMove: "start" | "end";
 };
 
-export const lastSelectedLineStore = writable<Optional<TypeSelectedLineStore>>({
+export const lastSelectedLineStore = writable<TypeSelectedLineStore>({
   htmlElement: undefined,
   dataElement: undefined,
+  pointToMove: undefined
 });

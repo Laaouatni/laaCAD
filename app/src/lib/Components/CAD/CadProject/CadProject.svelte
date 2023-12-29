@@ -38,15 +38,13 @@
 
   function handleMouseDown(e: MouseEvent) {
     const mousePosition = cursorPoint(e);
-    if (
-      $lastSelectedLineStore.dataElement &&
-      $lastSelectedLineStore.htmlElement
-    ) {
-      $lastSelectedLineStore.dataElement.geometryData.position.start.x =
-        mousePosition?.x ?? 0;
 
-      $lastSelectedLineStore.dataElement.geometryData.position.start.y =
-        mousePosition?.y ?? 0;
+    if (Object.values($lastSelectedLineStore).every((el) => el !== undefined)) {
+      ["x", "y"].forEach((axisName) => {
+        $lastSelectedLineStore.dataElement.geometryData.position[
+          $lastSelectedLineStore.pointToMove
+        ][axisName] = mousePosition[axisName] ?? 0;
+      });
 
       $appStore.system.projects[projectName].elements =
         replaceElementInTheRightPosition(
@@ -66,7 +64,7 @@
   height={viewPort.y}
   {viewBox}
   {preserveAspectRatio}
-  on:mousedown={handleMouseDown}
+  on:mousemove={handleMouseDown}
 >
   <CadGroup
     childElements={$appStore.system.projects[projectName].elements}
