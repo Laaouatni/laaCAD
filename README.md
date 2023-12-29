@@ -2,7 +2,7 @@
 
 yes, I want to recreate simple AutoCAD clone, using SvelteKit/TypeScript.
 
-visit the `development` branch for the beta code (not complete, is work in progress)
+visit the [`development`](https://github.com/Laaouatni/laaCAD/tree/development) branch for the beta code (not complete, is work in progress)
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
