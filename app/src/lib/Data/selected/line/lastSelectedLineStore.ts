@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 
 export type TypeSelectedLineStore = {
   $lastSelectedLineStore: any;
-  htmlElement: SVGLineElement;
+  htmlElement: SVGLineElement | SVGRectElement;
   dataElement: TypeElement<"Line">;
   pointToMove: "start" | "end";
 };

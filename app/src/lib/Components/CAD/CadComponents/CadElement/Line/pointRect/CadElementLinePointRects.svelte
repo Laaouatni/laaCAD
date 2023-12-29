@@ -4,7 +4,6 @@
 
   import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
 
-
   export let CadElementObj: TypeElement<"Line">;
 
   const MULTIPLICATOR_VALUE = 4;
@@ -22,25 +21,27 @@
     CadElementObj.geometryData.position,
   ) as Array<keyof typeof CadElementObj.geometryData.position>;
 
-  function handleOnClick(e: MouseEvent) {
-    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
+  function handleOnMouseDown(e: MouseEvent) {
+    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGRectElement;
     $lastSelectedLineStore.dataElement = CadElementObj;
-    $lastSelectedLineStore.pointToMove = "end"; // it need to be automatic
+    $lastSelectedLineStore.pointToMove = (e.currentTarget as SVGRectElement)
+      .classList[0] as keyof typeof CadElementObj.geometryData.position;
   }
 </script>
 
 {#each possiblePositions as thisPossiblePosition}
   <rect
+    class={thisPossiblePosition}
     height={heightWidth}
     width={heightWidth}
     fill="transparent"
     stroke-width={lineThickness}
     stroke="orange"
     x={CadElementObj.geometryData.position[thisPossiblePosition].x -
-      heightWidth / 2}
+      (heightWidth / 2)}
     y={CadElementObj.geometryData.position[thisPossiblePosition].y -
-      heightWidth / 2}
+      (heightWidth / 2)}
     rx={lineThickness}
-    on:click={handleOnClick}
+    on:mousedown={handleOnMouseDown}
   ></rect>
 {/each}
