@@ -14,7 +14,7 @@
   export let y: number;
 
   let rectClass: string = "";
-  export {rectClass as class};
+  export { rectClass as class };
 
   const MULTIPLICATOR_VALUE = 4;
 
@@ -28,7 +28,7 @@
   $: heightWidthRect = lineThickness * MULTIPLICATOR_VALUE;
   $: correctionValueToCenter = heightWidthRect / 2;
 
-  function handleOnMouseDown(e: MouseEvent) {
+  function handleMouseDown(e: MouseEvent | TouchEvent) {
     $lastSelectedStore.htmlElement = e.currentTarget as SVGRectElement;
     $lastSelectedStore.dataElement = CadElementObj;
     if ($lastSelectedStore.dataElement.geometryType === "Line") {
@@ -38,11 +38,11 @@
     }
   }
 
-  function handleOnMouseUp(e: MouseEvent) {
+  function handleMouseUp(e: MouseEvent | TouchEvent) {
     Object.keys($lastSelectedStore).forEach((key) => {
       $lastSelectedStore[key as keyof typeof $lastSelectedStore] = null;
     });
-  }
+  };
 </script>
 
 <rect
@@ -55,6 +55,8 @@
   x={x - correctionValueToCenter}
   y={y - correctionValueToCenter}
   rx={lineThickness}
-  on:mousedown={handleOnMouseDown}
-  on:mouseup={handleOnMouseUp}
+  on:mousedown={handleMouseDown}
+  on:touchstart={handleMouseDown}
+  on:mouseup={handleMouseUp}
+  on:touchend={handleMouseUp}
 ></rect>

@@ -29,10 +29,16 @@
     ? (thisHtmlSvgElement.createSVGPoint() as DOMPoint)
     : undefined;
 
-  function cursorPoint(e: MouseEvent) {
+  function cursorPoint(e: MouseEvent | TouchEvent) {
+    const isTouchEvent = (e as TouchEvent).touches;
     if (pt && thisHtmlSvgElement) {
-      pt.x = e.clientX;
-      pt.y = e.clientY;
+      if (isTouchEvent) {
+        pt.x = isTouchEvent[0].clientX;
+        pt.y = isTouchEvent[0].clientY;
+      } else {
+        pt.x = (e as MouseEvent).clientX;
+        pt.y = (e as MouseEvent).clientY;
+      }
 
       const ctm = thisHtmlSvgElement.getScreenCTM();
 
@@ -42,15 +48,20 @@
     }
   }
 
-  function handleMouseMove(e: MouseEvent) {
+  function handleMouseMove(e: MouseEvent | TouchEvent) {
     const mousePosition = cursorPoint(e);
-    const isLeftMouseButtonPressed = e.buttons === 1;
+    const isLeftMouseButtonPressed = (e as MouseEvent).buttons === 1;
+    const isFingerTouchOnScreen = (e as TouchEvent).touches;
+
     const hasLastElementSelected = !Object.values($lastSelectedStore).every(
       (el) => el === null,
     );
     const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
 
-    if (isLeftMouseButtonPressed && hasLastElementSelected) {
+    if (
+      (isLeftMouseButtonPressed || isFingerTouchOnScreen) &&
+      hasLastElementSelected
+    ) {
       axis.forEach((axisName) => {
         if ($lastSelectedStore.dataElement.geometryType === "Line") {
           (
@@ -85,6 +96,7 @@
   {viewBox}
   {preserveAspectRatio}
   on:mousemove={handleMouseMove}
+  on:touchmove={handleMouseMove}
 >
   <CadGroup childElements={$appStore.system.projects[projectName].elements} />
 </svg>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getElementProperty } from "$logic/getElementProperty";
-  import CadRect from "$components/CAD/CadComponents/CadOther/CadRect/CadRect.svelte";
+  import CadRectMoveUtility from "$components/CAD/CadComponents/CadUtilities/CadRectMoveUtility/CadRectMoveUtility.svelte";
 
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
@@ -32,10 +32,10 @@
 ></line>
 
 {#each possiblePositions as thisPossiblePosition}
-  <CadRect
+  <CadRectMoveUtility
     class={thisPossiblePosition}
     {CadElementObj}
     x={CadElementObj.geometryData.position[thisPossiblePosition].x}
     y={CadElementObj.geometryData.position[thisPossiblePosition].y}
-  ></CadRect>
+  ></CadRectMoveUtility>
 {/each}
