@@ -13,12 +13,7 @@
         $appStore.system.projects[projectName].elements,
         CadElementObj,
       );
-  };
-
-  function handleMouseOver() {
-    CadElementObj.geometryData.position.start.x += 40;
-    updateCadElementEventListenerState();
-  };
+  }
 </script>
 
 <line
@@ -39,5 +34,4 @@
       thisElementObj: CadElementObj,
     }),
   )}
-  on:mouseover={handleMouseOver}
 ></line>
