@@ -1,8 +1,7 @@
 <script lang="ts">
-  import CadElementLinePointRects from "./pointRect/CadElementLinePointRects.svelte";
-
-  import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
+  import CadElementLinePointRects from "$components/CAD/CadComponents/CadElement/Line/pointRect/CadElementLinePointRects.svelte";
   import { getElementProperty } from "$logic/getElementProperty";
+
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
   export let CadElementObj: TypeElement<"Line">;
@@ -15,12 +14,6 @@
   //       CadElementObj,
   //     );
   // }
-
-  function handleMouseEnter(e: MouseEvent) {
-    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
-    $lastSelectedLineStore.dataElement = CadElementObj;
-    $lastSelectedLineStore.pointToMove = "end"; // it need to be automatic
-  }
 </script>
 
 <line
@@ -41,7 +34,6 @@
       thisElementObj: CadElementObj,
     }),
   )}
-  on:mouseenter={handleMouseEnter}
 ></line>
 
 <CadElementLinePointRects {CadElementObj}></CadElementLinePointRects>

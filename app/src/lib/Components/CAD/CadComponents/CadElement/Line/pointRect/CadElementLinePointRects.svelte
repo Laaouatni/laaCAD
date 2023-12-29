@@ -2,6 +2,9 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
+  import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
+
+
   export let CadElementObj: TypeElement<"Line">;
 
   const MULTIPLICATOR_VALUE = 4;
@@ -18,6 +21,12 @@
   $: possiblePositions = Object.keys(
     CadElementObj.geometryData.position,
   ) as Array<keyof typeof CadElementObj.geometryData.position>;
+
+  function handleOnClick(e: MouseEvent) {
+    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
+    $lastSelectedLineStore.dataElement = CadElementObj;
+    $lastSelectedLineStore.pointToMove = "end"; // it need to be automatic
+  }
 </script>
 
 {#each possiblePositions as thisPossiblePosition}
@@ -32,5 +41,6 @@
     y={CadElementObj.geometryData.position[thisPossiblePosition].y -
       heightWidth / 2}
     rx={lineThickness}
+    on:click={handleOnClick}
   ></rect>
 {/each}

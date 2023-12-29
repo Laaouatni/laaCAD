@@ -37,23 +37,28 @@
     }
   }
 
-  function handleMouseDown(e: MouseEvent) {
+  function handleMouseMove(e: MouseEvent) {
     const mousePosition = cursorPoint(e);
+    const isLeftMouseButtonPressed = e.buttons === 1;
 
-    if (Object.values($lastSelectedLineStore).every((el) => el !== undefined)) {
-      const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
+    if (isLeftMouseButtonPressed) {
+      if (
+        Object.values($lastSelectedLineStore).every((el) => el !== undefined)
+      ) {
+        const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
 
-      axis.forEach((axisName) => {
-        $lastSelectedLineStore.dataElement.geometryData.position[
-          $lastSelectedLineStore.pointToMove
-        ][axisName] = mousePosition?.[axisName] ?? 0;
-      });
+        axis.forEach((axisName) => {
+          $lastSelectedLineStore.dataElement.geometryData.position[
+            $lastSelectedLineStore.pointToMove
+          ][axisName] = mousePosition?.[axisName] ?? 0;
+        });
 
-      $appStore.system.projects[projectName].elements =
-        replaceElementInTheRightPosition(
-          $appStore.system.projects[projectName].elements,
-          $lastSelectedLineStore.dataElement,
-        );
+        $appStore.system.projects[projectName].elements =
+          replaceElementInTheRightPosition(
+            $appStore.system.projects[projectName].elements,
+            $lastSelectedLineStore.dataElement,
+          );
+      }
     }
   }
 
@@ -67,7 +72,7 @@
   height={viewPort.y}
   {viewBox}
   {preserveAspectRatio}
-  on:mousemove={handleMouseDown}
+  on:mousemove={handleMouseMove}
 >
   <CadGroup
     childElements={$appStore.system.projects[projectName].elements}
