@@ -1,9 +1,11 @@
 <script lang="ts">
   import { appStore } from "$data/appStore";
+  import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
+
   import { getElementProperty } from "$logic/getElementProperty";
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
+
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
-  import { onMount } from "svelte";
 
   export let CadElementObj: TypeElement<"Line">;
   export let projectName: string;
@@ -16,22 +18,13 @@
       );
   }
 
-  let htmlLineElement: SVGLineElement;
-
-  $: svg = htmlLineElement
-    ? (htmlLineElement.closest("svg") as SVGSVGElement)
-    : null;
-  $: pt = svg ? svg.createSVGPoint() : null;
-
-  function cursorPoint(evt: MouseEvent, svg: SVGSVGElement, pt: DOMPoint) {
-    pt.x = evt.clientX;
-    pt.y = evt.clientY;
-    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  function handleMouseEnter(e: MouseEvent) {
+    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGLineElement;
+    $lastSelectedLineStore.dataElement = CadElementObj;
   }
 </script>
 
 <line
-  bind:this={htmlLineElement}
   id={CadElementObj.id}
   x1={CadElementObj.geometryData.position.start.x}
   y1={CadElementObj.geometryData.position.start.y}
@@ -49,9 +42,5 @@
       thisElementObj: CadElementObj,
     }),
   )}
-  on:mousemove={(e) => {
-    let pos = cursorPoint(e, svg, pt);
-    CadElementObj.geometryData.position.start.x = pos.x;
-    CadElementObj.geometryData.position.start.y = pos.y;
-  }}
+  on:mouseenter={handleMouseEnter}
 ></line>
