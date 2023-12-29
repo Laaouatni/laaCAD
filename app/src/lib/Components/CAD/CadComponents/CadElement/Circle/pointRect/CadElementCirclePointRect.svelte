@@ -2,7 +2,10 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
-  import { lastSelectedCircleStore } from "$data/selected/circle/lastSelectedCircleStore";
+  import {
+    lastSelectedStore,
+    type TypeLastSelectedStore,
+  } from "$data/selected/lastSelectedStore";
 
   export let CadElementObj: TypeElement<"Circle">;
 
@@ -18,13 +21,15 @@
   $: heightWidth = lineThickness * MULTIPLICATOR_VALUE;
 
   function handleOnMouseDown(e: MouseEvent) {
-    $lastSelectedCircleStore.htmlElement = e.currentTarget as SVGRectElement;
-    $lastSelectedCircleStore.dataElement = CadElementObj;
+    $lastSelectedStore.htmlElement = e.currentTarget as SVGRectElement;
+    $lastSelectedStore.dataElement = CadElementObj;
   }
 
   function handleOnMouseUp(e: MouseEvent) {
-    Object.keys($lastSelectedCircleStore).forEach((key) => {
-      $lastSelectedCircleStore[key as keyof typeof $lastSelectedCircleStore] = null;
+    Object.keys($lastSelectedStore).forEach((key) => {
+      ($lastSelectedStore as TypeLastSelectedStore<"Circle">)[
+        key as keyof typeof $lastSelectedStore
+      ] = null;
     });
   }
 </script>

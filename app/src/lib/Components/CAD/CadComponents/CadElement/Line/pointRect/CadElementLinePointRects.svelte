@@ -2,7 +2,10 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 
-  import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
+  import {
+    lastSelectedStore,
+    type TypeLastSelectedStore,
+  } from "$data/selected/lastSelectedStore";
 
   export let CadElementObj: TypeElement<"Line">;
 
@@ -22,15 +25,18 @@
   ) as Array<keyof typeof CadElementObj.geometryData.position>;
 
   function handleOnMouseDown(e: MouseEvent) {
-    $lastSelectedLineStore.htmlElement = e.currentTarget as SVGRectElement;
-    $lastSelectedLineStore.dataElement = CadElementObj;
-    $lastSelectedLineStore.pointToMove = (e.currentTarget as SVGRectElement)
-      .classList[0] as keyof typeof CadElementObj.geometryData.position;
+    $lastSelectedStore.htmlElement = e.currentTarget as SVGRectElement;
+    $lastSelectedStore.dataElement = CadElementObj;
+    ($lastSelectedStore as TypeLastSelectedStore<"Line">).pointToMove = (
+      e.currentTarget as SVGRectElement
+    ).classList[0] as keyof typeof CadElementObj.geometryData.position;
   }
 
   function handleOnMouseUp(e: MouseEvent) {
-    Object.keys($lastSelectedLineStore).forEach((key) => {
-      $lastSelectedLineStore[key as keyof typeof $lastSelectedLineStore] = null;
+    Object.keys($lastSelectedStore).forEach((key) => {
+      ($lastSelectedStore as TypeLastSelectedStore<"Line">)[
+        key as keyof typeof $lastSelectedStore
+      ] = null;
     });
   }
 </script>

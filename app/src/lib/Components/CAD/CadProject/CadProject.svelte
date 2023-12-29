@@ -8,8 +8,10 @@
 
   import { preserveAspectRatio } from "$components/CAD/CadProject/utilities/preserveAspectRatio";
 
-  import { lastSelectedLineStore } from "$data/selected/line/lastSelectedLineStore";
-  import { lastSelectedCircleStore } from "$data/selected/circle/lastSelectedCircleStore";
+  import {
+    lastSelectedStore,
+    type TypeLastSelectedStore,
+  } from "$data/selected/lastSelectedStore";
 
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
@@ -43,43 +45,36 @@
   function handleMouseMove(e: MouseEvent) {
     const mousePosition = cursorPoint(e);
     const isLeftMouseButtonPressed = e.buttons === 1;
+    const hasLastElementSelected = !Object.values($lastSelectedStore).every(
+      (el) => el === null,
+    );
     const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
 
-    if (isLeftMouseButtonPressed) {
-      if (
-        Object.values($lastSelectedLineStore).every((el) => el != undefined)
-      ) {
-        axis.forEach((axisName) => {
-          $lastSelectedLineStore.dataElement.geometryData.position[
-            $lastSelectedLineStore.pointToMove
+    if (isLeftMouseButtonPressed && hasLastElementSelected) {
+      axis.forEach((axisName) => {
+        if ($lastSelectedStore.dataElement.geometryType === "Line") {
+          (
+            $lastSelectedStore as TypeLastSelectedStore<"Line">
+          ).dataElement.geometryData.position[
+            ($lastSelectedStore as TypeLastSelectedStore<"Line">).pointToMove
           ][axisName] = mousePosition?.[axisName] ?? 0;
-        });
+        }
 
-        $appStore.system.projects[projectName].elements =
-          replaceElementInTheRightPosition(
-            $appStore.system.projects[projectName].elements,
-            $lastSelectedLineStore.dataElement,
-          );
-      }
-
-      if (
-        Object.values($lastSelectedCircleStore).every((el) => el != undefined)
-      ) {
-        axis.forEach((axisName) => {
-          $lastSelectedCircleStore.dataElement.geometryData.position[axisName] =
+        if ($lastSelectedStore.dataElement.geometryType === "Circle") {
+          (
+            $lastSelectedStore as TypeLastSelectedStore<"Circle">
+          ).dataElement.geometryData.position[axisName] =
             mousePosition?.[axisName] ?? 0;
-        });
+        }
+      });
 
-        $appStore.system.projects[projectName].elements =
-          replaceElementInTheRightPosition(
-            $appStore.system.projects[projectName].elements,
-            $lastSelectedCircleStore.dataElement,
-          );
-      }
+      $appStore.system.projects[projectName].elements =
+        replaceElementInTheRightPosition(
+          $appStore.system.projects[projectName].elements,
+          $lastSelectedStore.dataElement,
+        );
     }
   }
-
-  $: console.log($lastSelectedLineStore);
 </script>
 
 <svg
@@ -91,7 +86,5 @@
   {preserveAspectRatio}
   on:mousemove={handleMouseMove}
 >
-  <CadGroup
-    childElements={$appStore.system.projects[projectName].elements}
-  />
+  <CadGroup childElements={$appStore.system.projects[projectName].elements} />
 </svg>
