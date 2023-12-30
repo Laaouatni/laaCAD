@@ -15,6 +15,7 @@
 
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
+  import { onMoveInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/move/onMoveEventThatSupportsAllDevices";
 
   export let projectName: string;
 
@@ -95,8 +96,7 @@
   height={viewPort.y}
   {viewBox}
   {preserveAspectRatio}
-  on:mousemove={handleMouseMove}
-  on:touchmove={handleMouseMove}
+  use:onMoveInputEventThatSupportsAllDevices={handleMouseMove}
 >
   <CadGroup childElements={$appStore.system.projects[projectName].elements} />
 </svg>

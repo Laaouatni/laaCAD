@@ -7,6 +7,8 @@
     type TypeLastSelectedStore,
   } from "$data/selected/lastSelectedStore";
   import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
+  import { onUpInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/up/onUpEventThatSupportsAllDevices";
+  import { onDownInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/down/onDownEventThatSupportsAllDevices";
 
   export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
 
@@ -32,17 +34,20 @@
     $lastSelectedStore.htmlElement = e.currentTarget as SVGRectElement;
     $lastSelectedStore.dataElement = CadElementObj;
     if ($lastSelectedStore.dataElement.geometryType === "Line") {
-      ($lastSelectedStore as TypeLastSelectedStore<"Line">).pointToMove =
-        $lastSelectedStore.htmlElement
-          .classList[0] as keyof typeof CadElementObj.geometryData.position;
+      type TypePointToMove = keyof typeof CadElementObj.geometryData.position;
+      const lineStore = $lastSelectedStore as TypeLastSelectedStore<"Line">;
+      const startEndString = $lastSelectedStore.htmlElement
+        .classList[0] as TypePointToMove;
+      
+        lineStore.pointToMove = startEndString;
     }
   }
 
-  function handleMouseUp(e: MouseEvent | TouchEvent) {
+  function handleMouseUp() {
     Object.keys($lastSelectedStore).forEach((key) => {
       $lastSelectedStore[key as keyof typeof $lastSelectedStore] = null;
     });
-  };
+  }
 </script>
 
 <rect
@@ -55,8 +60,6 @@
   x={x - correctionValueToCenter}
   y={y - correctionValueToCenter}
   rx={lineThickness}
-  on:mousedown={handleMouseDown}
-  on:touchstart={handleMouseDown}
-  on:mouseup={handleMouseUp}
-  on:touchend={handleMouseUp}
+  use:onDownInputEventThatSupportsAllDevices={handleMouseDown}
+  use:onUpInputEventThatSupportsAllDevices={handleMouseUp}
 ></rect>
