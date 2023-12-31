@@ -5,8 +5,10 @@ function onMoveInputEventThatSupportsAllDevices(
   callback: EventListenerOrEventListenerObject,
 ) {
   const eventsNames = ["mousemove", "touchmove"];
-
-  multipleEventsInOneAction(node, eventsNames, callback);
+  const baseFunctionLogic = multipleEventsInOneAction(node, eventsNames, callback);
+  
+  baseFunctionLogic.add();
+  return baseFunctionLogic.remove;
 }
 
 export { onMoveInputEventThatSupportsAllDevices };

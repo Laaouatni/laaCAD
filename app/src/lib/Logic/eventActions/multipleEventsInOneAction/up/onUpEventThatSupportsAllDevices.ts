@@ -5,8 +5,10 @@ function onUpInputEventThatSupportsAllDevices(
   callback: EventListenerOrEventListenerObject,
 ) {
   const eventsNames = ["mouseup", "touchend"];
-
-  multipleEventsInOneAction(node, eventsNames, callback);
+  const baseFunctionLogic = multipleEventsInOneAction(node, eventsNames, callback);
+  
+  baseFunctionLogic.add();
+  return baseFunctionLogic.remove;
 }
 
 export { onUpInputEventThatSupportsAllDevices };

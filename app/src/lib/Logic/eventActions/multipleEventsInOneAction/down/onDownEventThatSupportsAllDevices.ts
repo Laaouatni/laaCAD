@@ -5,8 +5,10 @@ function onDownInputEventThatSupportsAllDevices(
   callback: EventListenerOrEventListenerObject,
 ) {
   const eventsNames = ["mousedown", "touchstart"];
-
-  multipleEventsInOneAction(node, eventsNames, callback);
+  const baseFunctionLogic = multipleEventsInOneAction(node, eventsNames, callback);
+  
+  baseFunctionLogic.add();
+  return baseFunctionLogic.remove;
 }
 
 export { onDownInputEventThatSupportsAllDevices };

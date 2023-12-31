@@ -3,15 +3,18 @@ function multipleEventsInOneAction(
   eventsNames: string[],
   callback: EventListenerOrEventListenerObject
 ) {
-  eventsNames.forEach((eventName) => {
-    node.addEventListener(eventName, callback);
-  });
-
-  return () => {
-    eventsNames.forEach((eventName) => {
-      node.removeEventListener(eventName, callback);
-    });
-  };
+  return {
+    add: () => {
+      eventsNames.forEach((eventName) => {
+        node.addEventListener(eventName, callback);
+      });
+    }, 
+    remove: () => {
+      eventsNames.forEach((eventName) => {
+        node.removeEventListener(eventName, callback);
+      });       
+    }
+  }
 }
 
 export { multipleEventsInOneAction };
