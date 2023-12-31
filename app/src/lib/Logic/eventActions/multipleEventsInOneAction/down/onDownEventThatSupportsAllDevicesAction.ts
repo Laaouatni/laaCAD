@@ -1,8 +1,8 @@
 import { multipleEventsInOneAction } from "$logic/eventActions/multipleEventsInOneAction/multipleEventsInOneAction";
 
-function onDownInputEventThatSupportsAllDevices(
-  node: any,
-  callback: EventListenerOrEventListenerObject,
+function onDownInputEventThatSupportsAllDevicesAction(
+  node: Node,
+  callback: void,
 ) {
   const eventsNames = ["mousedown", "touchstart"];
   const baseFunctionLogic = multipleEventsInOneAction(node, eventsNames, callback);
@@ -11,4 +11,4 @@ function onDownInputEventThatSupportsAllDevices(
   return baseFunctionLogic.remove;
 }
 
-export { onDownInputEventThatSupportsAllDevices };
+export { onDownInputEventThatSupportsAllDevicesAction };

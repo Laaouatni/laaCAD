@@ -8,9 +8,11 @@
     lastSelectedStore,
     type TypeLastSelectedStore,
   } from "$data/selected/lastSelectedStore";
+  
   import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
-  import { onUpInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/up/onUpEventThatSupportsAllDevices";
-  import { onDownInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/down/onDownEventThatSupportsAllDevices";
+  
+  import { onUpInputEventThatSupportsAllDevicesAction } from "$logic/eventActions/multipleEventsInOneAction/up/onUpEventThatSupportsAllDevicesAction";
+  import { onDownInputEventThatSupportsAllDevicesAction } from "$logic/eventActions/multipleEventsInOneAction/down/onDownEventThatSupportsAllDevicesAction";
 
   export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
 
@@ -29,7 +31,7 @@
     isMobile = !!(
       navigator.maxTouchPoints || "ontouchstart" in document.documentElement
     );
-  }
+  };
 
   $: multiplicatorValueBasedOnDevice = isMobile
     ? MULTIPLICATOR_VALUE * 3
@@ -80,6 +82,6 @@
   x={x - correctionValueToCenter}
   y={y - correctionValueToCenter}
   rx={lineThickness}
-  use:onDownInputEventThatSupportsAllDevices={handleMouseDown}
-  use:onUpInputEventThatSupportsAllDevices={handleMouseUp}
+  use:onDownInputEventThatSupportsAllDevicesAction={handleMouseDown}
+  use:onUpInputEventThatSupportsAllDevicesAction={handleMouseUp}
 ></rect>

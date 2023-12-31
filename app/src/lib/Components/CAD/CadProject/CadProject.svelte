@@ -15,7 +15,7 @@
 
   import { replaceElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
   import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
-  import { onMoveInputEventThatSupportsAllDevices } from "$logic/eventActions/multipleEventsInOneAction/move/onMoveEventThatSupportsAllDevices";
+  import { onMoveInputEventThatSupportsAllDevicesAction } from "$logic/eventActions/multipleEventsInOneAction/move/onMoveEventThatSupportsAllDevicesAction";
 
   export let projectName: string;
 
@@ -59,6 +59,8 @@
     );
     const axis: (keyof TypeCoordinateXYZ)[] = ["x", "y"];
 
+    e.preventDefault();
+
     if (
       (isLeftMouseButtonPressed || isFingerTouchOnScreen) &&
       hasLastElementSelected
@@ -96,7 +98,7 @@
   height={viewPort.y}
   {viewBox}
   {preserveAspectRatio}
-  use:onMoveInputEventThatSupportsAllDevices={handleMouseMove}
+  use:onMoveInputEventThatSupportsAllDevicesAction={handleMouseMove}
 >
   <CadGroup childElements={$appStore.system.projects[projectName].elements} />
 </svg>

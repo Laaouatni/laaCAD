@@ -1,7 +1,7 @@
 function multipleEventsInOneAction(
   node: any,
   eventsNames: string[],
-  callback: EventListenerOrEventListenerObject
+  callback: any
 ) {
   return {
     add: () => {
