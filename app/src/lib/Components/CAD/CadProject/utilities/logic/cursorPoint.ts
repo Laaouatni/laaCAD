@@ -3,7 +3,7 @@ import { allAvailableCoordinates } from "$types/TypeTrasforms/TypeCoordinate/Typ
 function cursorPoint(
   e: MouseEvent | TouchEvent,
   parentHtmlSvg: SVGSVGElement,
-  svgPoint: DOMPoint,
+  svgPoint: SVGPoint,
 ) {
   const isTouchEvent = (e as TouchEvent).touches;
 

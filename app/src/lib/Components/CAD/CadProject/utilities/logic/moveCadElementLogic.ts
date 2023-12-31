@@ -2,7 +2,7 @@ import { allAvailableElementGeometryType } from "$types/TypeCadComponent/TypeEle
 import { allAvailableCoordinates } from "$types/TypeTrasforms/TypeCoordinate/TypeCoordinate";
 import { get } from "svelte/store";
 import { lastSelectedStore } from "$data/selected/lastSelectedStore";
-import { setPositionOfLastSelectedElement } from "$components/CAD/CadProject/utilities/logic/setPositionOfLastSelectedElement";
+import { setPositionOfLastSelectedElement } from "$components/CAD/CadProject/utilities/logic/setPositionOfLastSelectedElement/setPositionOfLastSelectedElement";
 
 function moveCadElementLogic(svgPoint: SVGPoint) {
   allAvailableElementGeometryType.forEach((thisElementName) => {
