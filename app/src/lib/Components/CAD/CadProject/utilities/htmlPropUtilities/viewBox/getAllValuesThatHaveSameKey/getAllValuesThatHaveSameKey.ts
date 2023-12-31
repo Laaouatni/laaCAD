@@ -3,7 +3,7 @@ import {
   pushAllValuesLine,
   pushAllValuesCircle,
   type TypePushAllValuesElementFunctionProps,
-} from "$components/CAD/CadProject/utilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
+} from "$components/CAD/CadProject/utilities/htmlPropUtilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
 
 function getAllValuesThatHaveSameKey(
   elementsArray: TypeElementOrGroup[],

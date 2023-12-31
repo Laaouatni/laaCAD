@@ -1,7 +1,7 @@
 import { appStore } from "$data/appStore";
 import { get } from "svelte/store";
 
-import { getAllValuesThatHaveSameKey } from "$components/CAD/CadProject/utilities/viewBox/getAllValuesThatHaveSameKey/getAllValuesThatHaveSameKey";
+import { getAllValuesThatHaveSameKey } from "$components/CAD/CadProject/utilities/htmlPropUtilities/viewBox/getAllValuesThatHaveSameKey/getAllValuesThatHaveSameKey";
 
 function viewBox(projectNameId: string): string {
   const projectElementsObj =

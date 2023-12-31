@@ -1,4 +1,4 @@
-import { positioning } from "$components/CAD/CadProject/utilities/positioning";
+import { positioning } from "$components/CAD/CadProject/utilities/htmlPropUtilities/positioning";
 
 type TypePreserveAspectRatio = {
   positionOfViewBoxInsideViewPort: string;

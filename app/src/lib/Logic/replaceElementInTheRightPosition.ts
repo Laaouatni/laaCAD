@@ -1,11 +1,11 @@
-function replaceElementInTheRightPosition(elements: any[], newElement: any): any[] {
+function returnReplacedElementInTheRightPosition(elements: any[], newElement: any): any[] {
   return elements.map((element) => {
     if (element.id === newElement.id) {
       return newElement;
     } else if (element.type === "CadGroup") {
       return {
         ...element,
-        elements: replaceElementInTheRightPosition(element.elements, newElement),
+        elements: returnReplacedElementInTheRightPosition(element.elements, newElement),
       };
     } else {
       return element;
@@ -13,4 +13,4 @@ function replaceElementInTheRightPosition(elements: any[], newElement: any): any
   });
 }
 
-export { replaceElementInTheRightPosition };
+export { returnReplacedElementInTheRightPosition };

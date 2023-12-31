@@ -1,6 +1,6 @@
 import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
 import type { TypeCoordinateXYZ } from "$types/TypeTrasforms/TypeTransfroms";
-import type { TypePushAllValuesElementFunctionProps } from "$components/CAD/CadProject/utilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
+import type { TypePushAllValuesElementFunctionProps } from "$components/CAD/CadProject/utilities/htmlPropUtilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
 import { getElementProperty } from "$logic/getElementProperty";
 
 function pushAllValuesLine(props: TypePushAllValuesElementFunctionProps) {
