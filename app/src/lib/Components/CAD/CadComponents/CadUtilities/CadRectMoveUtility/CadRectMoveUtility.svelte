@@ -1,41 +1,23 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-
+  import { getDeviceType } from "$logic/getDeviceType";
+  import { sizeMultiplier } from "$components/CAD/CadComponents/CadUtilities/CadRectMoveUtility/utilities/const/sizeMultiplier";
+  import { lastSelectedStore } from "$data/selected/lastSelectedStore";
   import { getElementProperty } from "$logic/getElementProperty";
-  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
-
-  import {
-    lastSelectedStore,
-    type TypeLastSelectedStore,
-  } from "$data/selected/lastSelectedStore";
-  
-  import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
-  
   import { onUpInputEventThatSupportsAllDevicesAction } from "$logic/eventActions/multipleEventsInOneAction/up/onUpEventThatSupportsAllDevicesAction";
   import { onDownInputEventThatSupportsAllDevicesAction } from "$logic/eventActions/multipleEventsInOneAction/down/onDownEventThatSupportsAllDevicesAction";
+  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+  import type { TypeLastSelectedStore } from "$data/selected/lastSelectedStore";
+  import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
+
+  let rectClass: string = "";
+  export { rectClass as class };
 
   export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
 
   export let x: number;
   export let y: number;
 
-  let rectClass: string = "";
-  export { rectClass as class };
-
-  const MULTIPLICATOR_VALUE: number = 4;
-
-  let isMobile: boolean = false;
-  let isThisComponentSelected = false;
-
-  $: if (browser) {
-    isMobile = !!(
-      navigator.maxTouchPoints || "ontouchstart" in document.documentElement
-    );
-  };
-
-  $: multiplicatorValueBasedOnDevice = isMobile
-    ? MULTIPLICATOR_VALUE * 3
-    : MULTIPLICATOR_VALUE;
+  let isThisComponentSelected: boolean = false;
 
   $: lineThickness = Number(
     getElementProperty({
@@ -44,7 +26,10 @@
     }),
   );
 
-  $: heightWidthRect = lineThickness * multiplicatorValueBasedOnDevice;
+  $: heightWidthRect =
+    lineThickness *
+    sizeMultiplier[getDeviceType() as keyof typeof sizeMultiplier];
+
   $: correctionValueToCenter = heightWidthRect / 2;
 
   function handleMouseDown(e: MouseEvent | TouchEvent) {
