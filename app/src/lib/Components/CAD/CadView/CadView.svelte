@@ -4,10 +4,9 @@
   import Card from "$components/UI/UiCard/UiCard.svelte";
 </script>
 
-<Card class="border border-black w-full h-full">
+<Card class="border border-black w-full h-full grid grid-cols-2">
   {#each Object.entries($appStore.system.projects) as [key]}
-    <Card>
-      <CadProject projectName={key} />
-    </Card>
+    <span>{key}</span>
+    <CadProject projectName={key} />
   {/each}
 </Card>

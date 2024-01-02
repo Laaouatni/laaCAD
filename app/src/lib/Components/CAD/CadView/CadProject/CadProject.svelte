@@ -9,16 +9,17 @@
   import { cursorPoint } from "$components/CAD/CadView/CadProject/utilities/logic/cursorPoint";
   import { saveChangesInProjectElements } from "$components/CAD/CadView/CadProject/utilities/logic/saveChangesInProjectElements";
   import { moveCadElementLogic } from "$components/CAD/CadView/CadProject/utilities/logic/moveCadElementLogic";
+  import { onMount } from "svelte";
 
   export let projectName: string;
 
+  let pt: SVGPoint;
   let viewBox: string;
   let thisHtmlSvgElement: SVGSVGElement;
-  let pt: SVGPoint;
 
-  $: if (thisHtmlSvgElement) {
+  onMount(() => {
     pt = thisHtmlSvgElement.createSVGPoint();
-  }
+  });
 
   $: if ($appStore.system.projects[projectName]) {
     viewBox = viewBoxFunction(projectName);
@@ -33,12 +34,17 @@
       (el) => el === null,
     );
 
-    if (
-      (isLeftMouseButtonPressed || isFingerTouchOnScreen) &&
-      hasLastElementSelected
-    ) {
-      moveCadElementLogic(mousePosition);
-      saveChangesInProjectElements(projectName, $lastSelectedStore.dataElement);
+    if (mousePosition) {
+      if (
+        (isLeftMouseButtonPressed || isFingerTouchOnScreen) &&
+        hasLastElementSelected
+      ) {
+        moveCadElementLogic(mousePosition);
+        saveChangesInProjectElements(
+          projectName,
+          $lastSelectedStore.dataElement,
+        );
+      }
     }
   }
 </script>
