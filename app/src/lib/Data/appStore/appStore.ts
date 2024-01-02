@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import { example } from "$lib/Data/exampleData";
 import type { TypeFileStructureWithoutIds } from "$types/TypeFileStructureWithoutIds";
-import { setElementsWithNewGeneratedIds } from "$logic/setElementsWithNewGeneratedIds";
+import { setElementsWithNewGeneratedIds } from "$data/appStore/utilities/logic/setElementsWithNewGeneratedIds";
 import type { TypeFileStructure } from "$types/TypeFileStructure";
 
 export const appStore = writable<TypeFileStructureWithoutIds | TypeFileStructure>({
@@ -43,7 +43,6 @@ appStore.subscribe((value) => {
         value.system.projects[projectName].elements,
       );
       prevLength[projectName] = currentLength;
-      console.log("new ids generated");
     }
   });
 });

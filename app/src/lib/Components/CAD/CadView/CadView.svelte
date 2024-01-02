@@ -1,6 +1,6 @@
 <script lang="ts">
   import CadProject from "$components/CAD/CadView/CadProject/CadProject.svelte";
-  import { appStore } from "$data/appStore";
+  import { appStore } from "$data/appStore/appStore";
   import Card from "$components/UI/UiCard/UiCard.svelte";
 </script>
 

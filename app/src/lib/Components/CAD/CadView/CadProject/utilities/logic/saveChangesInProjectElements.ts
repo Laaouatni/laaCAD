@@ -1,7 +1,7 @@
-import { appStore } from "$data/appStore";
+import { appStore } from "$data/appStore/appStore";
 import { get } from "svelte/store";
-import { returnReplacedElementInTheRightPosition } from "$logic/replaceElementInTheRightPosition";
 import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
+import { returnReplacedElementInTheRightPosition } from "$components/CAD/CadView/CadProject/utilities/logic//replaceElementInTheRightPosition";
 
 function saveChangesInProjectElements(
   projectName: string,

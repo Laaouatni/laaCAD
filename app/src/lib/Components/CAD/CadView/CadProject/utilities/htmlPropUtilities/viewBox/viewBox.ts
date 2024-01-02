@@ -1,4 +1,4 @@
-import { appStore } from "$data/appStore";
+import { appStore } from "$data/appStore/appStore";
 import { get } from "svelte/store";
 
 import { getAllValuesThatHaveSameKey } from "$components/CAD/CadView/CadProject/utilities/htmlPropUtilities/viewBox/getAllValuesThatHaveSameKey/getAllValuesThatHaveSameKey";

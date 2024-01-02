@@ -1,6 +1,6 @@
 <script lang="ts">
   import CadGroup from "$components/CAD/CadView/CadProject/CadComponents/CadGroup/CadGroup.svelte";
-  import { appStore } from "$data/appStore";
+  import { appStore } from "$data/appStore/appStore";
   import { viewPort } from "$components/CAD/CadView/CadProject/utilities/htmlPropUtilities/viewPort";
   import { viewBox as viewBoxFunction } from "$components/CAD/CadView/CadProject/utilities/htmlPropUtilities/viewBox/viewBox";
   import { preserveAspectRatio } from "$components/CAD/CadView/CadProject/utilities/htmlPropUtilities/preserveAspectRatio";

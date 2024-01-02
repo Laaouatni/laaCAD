@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getDeviceType } from "$logic/getDeviceType";
+  import { getDeviceType } from "$components/CAD/CadView/CadProject/CadComponents/CadUtilities/CadRectMoveUtility/utilities/logic/getDeviceType";
   import { sizeMultiplier } from "$components/CAD/CadView/CadProject/CadComponents/CadUtilities/CadRectMoveUtility/utilities/const/sizeMultiplier";
   import { lastSelectedStore } from "$data/selected/lastSelectedStore";
   import { getElementProperty } from "$logic/getElementProperty";

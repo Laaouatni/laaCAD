@@ -3,7 +3,7 @@ import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeEle
 import type { TypeKeyOfPropertiesIndividual, TypeValueOfPropertiesIndividual } from "$types/TypeProperties/TypePropertiesIndividual/TypePropertiesIndividual";
 
 import { get } from "svelte/store";
-import { appStore } from "$data/appStore";
+import { appStore } from "$data/appStore/appStore";
 
 type TypeFunctionGetElementPropertyProps = {
   propertyToFind: TypeKeyOfPropertiesIndividual;
