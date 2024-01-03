@@ -1,8 +1,8 @@
 import { newCadLineElementObj } from "$components/CAD/CadView/CadProject/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
 import { newCadCircleElementObj } from "$components/CAD/CadView/CadProject/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
-import type { TypeFileStructureWithoutIds } from "$types/TypeFileStructureWithoutIds";
+import type { TypeFileStructure } from "$types/TypeFileStructure";
 
-export const example: TypeFileStructureWithoutIds = {
+export const example: TypeFileStructure = {
   system: {
     projects: {
       firstProjectName: {

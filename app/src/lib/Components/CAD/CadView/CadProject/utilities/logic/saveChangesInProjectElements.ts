@@ -7,11 +7,10 @@ function saveChangesInProjectElements(
   projectName: string,
   newElements: TypeElementOrGroup,
 ) {
-  get(appStore).system.projects[projectName].elements =
-    returnReplacedElementInTheRightPosition(
-      get(appStore).system.projects[projectName].elements,
-      newElements,
-    );
+  returnReplacedElementInTheRightPosition(
+    get(appStore).system.projects[projectName].elements,
+    newElements,
+  );
 
   appStore.set(get(appStore));
 }

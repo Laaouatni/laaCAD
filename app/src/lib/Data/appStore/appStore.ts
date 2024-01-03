@@ -1,11 +1,10 @@
 import { writable } from "svelte/store";
 import { example } from "$data/exampleData";
-import type { TypeFileStructureWithoutIds } from "$types/TypeFileStructureWithoutIds";
 import { setElementsWithNewGeneratedIds } from "$data/appStore/utilities/logic/setElementsWithNewGeneratedIds";
 import type { TypeFileStructure } from "$types/TypeFileStructure";
 import type { TypeProjects } from "$types/TypeSystem/projects/TypeProjects";
 
-export const appStore = writable<TypeFileStructureWithoutIds>({
+export const appStore = writable<TypeFileStructure>({
   system: {
     projects: {},
     defaults: {
