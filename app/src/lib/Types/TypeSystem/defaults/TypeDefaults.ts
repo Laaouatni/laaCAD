@@ -1,5 +1,5 @@
-import type { TypeProperties } from "$types/TypeProperties/TypeProperties";
-import type { TypePreferences } from "$types/TypeSystem/defaults/preferences/TypePreferences";
+import type { TypeProperties } from "$types/TypeSystem/defaults/TypeProperties/TypeProperties";
+import type { TypePreferences } from "$types/TypeSystem/defaults/TypePreferences/TypePreferences";
 
 type TypeDefaults = {
   properties: TypeProperties;

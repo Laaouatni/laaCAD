@@ -1,4 +1,4 @@
-import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
+import type { TypeElementOrGroup } from "$types/TypeSystem/projects/TypeCadComponent/TypeCadComponent";
 import {
   pushAllValuesLine,
   pushAllValuesCircle,

@@ -1,4 +1,4 @@
-import { allAvailableElementGeometryType } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
+import { allAvailableElementGeometryType } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 import { allAvailableCoordinates } from "$types/TypeTrasforms/TypeCoordinate/TypeCoordinate";
 import { get } from "svelte/store";
 import { lastSelectedStore } from "$data/selected/lastSelectedStore";

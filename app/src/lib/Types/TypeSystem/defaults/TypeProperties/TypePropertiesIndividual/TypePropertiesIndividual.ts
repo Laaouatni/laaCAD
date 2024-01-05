@@ -1,4 +1,4 @@
-import type { TypeColor } from "$types/TypeProperties/color/TypePropertiesColor";
+import type { TypeColor } from "$types/TypeSystem/defaults/TypeProperties/color/TypePropertiesColor";
 
 type TypePropertiesIndividual = {
   thickness: number;

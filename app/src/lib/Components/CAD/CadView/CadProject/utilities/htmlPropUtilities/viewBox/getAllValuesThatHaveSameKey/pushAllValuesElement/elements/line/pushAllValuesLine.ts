@@ -1,4 +1,4 @@
-import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+import type { TypeElement } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/TypeElement";
 import type { TypePushAllValuesElementFunctionProps } from "$components/CAD/CadView/CadProject/utilities/htmlPropUtilities/viewBox/getAllValuesThatHaveSameKey/pushAllValuesElement/pushAllValuesElement";
 import { getElementProperty } from "$logic/getElementProperty";
 

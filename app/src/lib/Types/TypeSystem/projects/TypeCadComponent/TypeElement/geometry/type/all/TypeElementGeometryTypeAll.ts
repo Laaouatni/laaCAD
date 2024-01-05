@@ -1,4 +1,4 @@
-import type { TypeElementGeometryTypeGroupAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/group/TypeElementGeometryTypeGroupAll";
+import type { TypeElementGeometryTypeGroupAll } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/geometry/type/all/group/TypeElementGeometryTypeGroupAll";
 
 const allAvailableElementGeometryType = ["Line", "Circle"] as const;
 type TypeElementGeometryTypeAll =

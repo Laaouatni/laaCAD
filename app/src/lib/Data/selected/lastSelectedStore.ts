@@ -1,6 +1,6 @@
-import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
-import type { TypeElementGeometryDataPosition } from "$types/TypeCadComponent/TypeElement/geometry/data/TypeElementGeometryData";
-import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
+import type { TypeElement } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/TypeElement";
+import type { TypeElementGeometryDataPosition } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/geometry/data/TypeElementGeometryData";
+import type { TypeElementGeometryTypeAll } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 import { writable } from "svelte/store";
 
 export type TypeLastSelectedStore<T extends TypeElementGeometryTypeAll> = {
@@ -17,9 +17,3 @@ export const lastSelectedStore = writable<
   dataElement: null,
   pointToMove: null,
 });
-
-// export const lastSelectedStore = writable({
-//   htmlElement: null,
-//   dataElement: null,
-//   pointToMove: null,
-// });

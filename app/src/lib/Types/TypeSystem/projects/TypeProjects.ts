@@ -1,4 +1,4 @@
-import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
+import type { TypeElementOrGroup } from "$types/TypeSystem/projects/TypeCadComponent/TypeCadComponent";
 
 type TypeProjects = {
   [fileName: string]: {
@@ -6,6 +6,4 @@ type TypeProjects = {
   };
 };
 
-export type {
-  TypeProjects
-}
+export type { TypeProjects };
