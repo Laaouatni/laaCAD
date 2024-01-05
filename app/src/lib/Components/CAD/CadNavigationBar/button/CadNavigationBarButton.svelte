@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { TypeProjects } from "$types/TypeSystem/projects/TypeProjects";
   import { lastSelectedProjectStore } from "$data/lastSelected/cadProject/lastSelectedCadProjectStore";
+
   import { handleOnClick } from "$components/CAD/CadNavigationBar/button/utilities/handle/click/handleClick";
 
   export let compPropProjectName: keyof TypeProjects & string;

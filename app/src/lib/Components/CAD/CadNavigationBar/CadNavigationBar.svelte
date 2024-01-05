@@ -1,6 +1,6 @@
 <script lang="ts">
   import { appStore } from "$data/appStore/appStore";
-  import CadNavigationBarButton from "./button/CadNavigationBarButton.svelte";
+  import CadNavigationBarButton from "$components/CAD/CadNavigationBar/button/CadNavigationBarButton.svelte";
 
   $: allAvaibleProjectsNames = Object.keys($appStore.system.projects);
 </script>
