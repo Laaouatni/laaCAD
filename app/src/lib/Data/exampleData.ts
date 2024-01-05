@@ -1,5 +1,5 @@
-import { newCadLineElementObj } from "$components/CAD/CadView/CadProject/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
-import { newCadCircleElementObj } from "$components/CAD/CadView/CadProject/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
+import { newCadLineElementObj } from "$components/CAD/CadProjectViewCanvas/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
+import { newCadCircleElementObj } from "$components/CAD/CadProjectViewCanvas/utilities/logic/returnNewCadElementObj/returnNewCadElementObj";
 import type { TypeFileStructure } from "$types/TypeFileStructure";
 
 export const example: TypeFileStructure = {

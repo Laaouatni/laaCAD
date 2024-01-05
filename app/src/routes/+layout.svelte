@@ -2,7 +2,7 @@
   import "../app.pcss";
 </script>
 
-<main class="bg-light-50 dark:bg-dark-50 dark:text-light-50 text-dark-50 p-3">
+<main class="bg-light-50 dark:bg-dark-50 dark:text-light-50 text-dark-50 flex flex-col">
   <slot />
 </main>
 
