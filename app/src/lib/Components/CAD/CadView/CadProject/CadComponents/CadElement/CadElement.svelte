@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
-  import type { TypeElementGeometryTypeAll } from "$types/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
+  import type { TypeElement } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/TypeElement";
+  import type { TypeElementGeometryTypeAll } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/geometry/type/all/TypeElementGeometryTypeAll";
 
   import CadElementLine from "$components/CAD/CadView/CadProject/CadComponents/CadElement/Line/CadElementLine.svelte";
   import CadElementCircle from "$components/CAD/CadView/CadProject/CadComponents/CadElement/Circle/CadElementCircle.svelte";
 
-  export let CadElementObj: TypeElement<TypeElementGeometryTypeAll>;
+  export let compPropCadElementObj: TypeElement<TypeElementGeometryTypeAll>;
 
   const childComponents = {
     Line: CadElementLine,
@@ -13,7 +13,7 @@
   };
 
   $: choosedComponent =
-    childComponents[CadElementObj.geometryType as keyof typeof childComponents];
+    childComponents[compPropCadElementObj.geometryType as keyof typeof childComponents];
 </script>
 
-<svelte:component this={choosedComponent} {CadElementObj} />
+<svelte:component this={choosedComponent} {compPropCadElementObj} />

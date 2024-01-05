@@ -11,7 +11,7 @@
   import { moveCadElementLogic } from "$components/CAD/CadView/CadProject/utilities/logic/moveCadElementLogic";
   import { onMount } from "svelte";
 
-  export let projectName: string;
+  export let compPropProjectName: string;
 
   let pt: SVGPoint;
   let viewBox: string;
@@ -21,8 +21,8 @@
     pt = thisHtmlSvgElement.createSVGPoint();
   });
 
-  $: if ($appStore.system.projects[projectName]) {
-    viewBox = viewBoxFunction(projectName);
+  $: if ($appStore.system.projects[compPropProjectName]) {
+    viewBox = viewBoxFunction(compPropProjectName);
   }
 
   function handleMouseMove(e: MouseEvent | TouchEvent) {
@@ -41,7 +41,7 @@
       ) {
         moveCadElementLogic(mousePosition);
         saveChangesInProjectElements(
-          projectName,
+          compPropProjectName,
           $lastSelectedStore.dataElement,
         );
       }
@@ -58,5 +58,5 @@
   {preserveAspectRatio}
   use:onMoveInputEventThatSupportsAllDevicesAction={handleMouseMove}
 >
-  <CadGroup childElements={$appStore.system.projects[projectName].elements} />
+  <CadGroup compPropChildElements={$appStore.system.projects[compPropProjectName].elements} />
 </svg>

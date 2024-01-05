@@ -2,31 +2,31 @@
   import { getElementProperty } from "$logic/getElementProperty";
   import CadRectMoveUtility from "$components/CAD/CadView/CadProject/CadComponents/CadUtilities/CadRectMoveUtility/CadRectMoveUtility.svelte";
 
-  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+  export let compPropCadElementObj: TypeElement<"Line">;
+  import type { TypeElement } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/TypeElement";
 
   $: possiblePositions = Object.keys(
-    CadElementObj.geometryData.position,
-  ) as Array<keyof typeof CadElementObj.geometryData.position>;
+    compPropCadElementObj.geometryData.position,
+  ) as Array<keyof typeof compPropCadElementObj.geometryData.position>;
 
-  export let CadElementObj: TypeElement<"Line">;
 </script>
 
 <line
-  id={CadElementObj.id}
-  x1={CadElementObj.geometryData.position.start.x}
-  y1={CadElementObj.geometryData.position.start.y}
-  x2={CadElementObj.geometryData.position.end.x}
-  y2={CadElementObj.geometryData.position.end.y}
+  id={compPropCadElementObj.id}
+  x1={compPropCadElementObj.geometryData.position.start.x}
+  y1={compPropCadElementObj.geometryData.position.start.y}
+  x2={compPropCadElementObj.geometryData.position.end.x}
+  y2={compPropCadElementObj.geometryData.position.end.y}
   stroke-width={Number(
     getElementProperty({
       propertyToFind: "thickness",
-      thisElementObj: CadElementObj,
+      thisElementObj: compPropCadElementObj,
     }),
   )}
   stroke={String(
     getElementProperty({
       propertyToFind: "color",
-      thisElementObj: CadElementObj,
+      thisElementObj: compPropCadElementObj,
     }),
   )}
 ></line>
@@ -34,8 +34,8 @@
 {#each possiblePositions as thisPossiblePosition}
   <CadRectMoveUtility
     class={thisPossiblePosition}
-    {CadElementObj}
-    x={CadElementObj.geometryData.position[thisPossiblePosition].x}
-    y={CadElementObj.geometryData.position[thisPossiblePosition].y}
+    {compPropCadElementObj}
+    compPropX={compPropCadElementObj.geometryData.position[thisPossiblePosition].x}
+    compPropY={compPropCadElementObj.geometryData.position[thisPossiblePosition].y}
   ></CadRectMoveUtility>
 {/each}

@@ -1,33 +1,33 @@
 <script lang="ts">
   import { getElementProperty } from "$logic/getElementProperty";
-  import type { TypeElement } from "$types/TypeCadComponent/TypeElement/TypeElement";
+  import type { TypeElement } from "$types/TypeSystem/projects/TypeCadComponent/TypeElement/TypeElement";
   import CadRectMoveUtility from "$components/CAD/CadView/CadProject/CadComponents/CadUtilities/CadRectMoveUtility/CadRectMoveUtility.svelte";
 
-  export let CadElementObj: TypeElement<"Circle">;
+  export let compPropCadElementObj: TypeElement<"Circle">;
 </script>
 
 <circle
-  id={CadElementObj.id}
+  id={compPropCadElementObj.id}
   fill={"none"}
-  cx={CadElementObj.geometryData.position.x}
-  cy={CadElementObj.geometryData.position.y}
-  r={CadElementObj.geometryData.radius}
+  cx={compPropCadElementObj.geometryData.position.x}
+  cy={compPropCadElementObj.geometryData.position.y}
+  r={compPropCadElementObj.geometryData.radius}
   stroke-width={Number(
     getElementProperty({
       propertyToFind: "thickness",
-      thisElementObj: CadElementObj,
+      thisElementObj: compPropCadElementObj,
     }),
   )}
   stroke={String(
     getElementProperty({
       propertyToFind: "color",
-      thisElementObj: CadElementObj,
+      thisElementObj: compPropCadElementObj,
     }),
   )}
 ></circle>
 
 <CadRectMoveUtility
-  {CadElementObj}
-  x={CadElementObj.geometryData.position.x}
-  y={CadElementObj.geometryData.position.y}
+  {compPropCadElementObj}
+  compPropX={compPropCadElementObj.geometryData.position.x}
+  compPropY={compPropCadElementObj.geometryData.position.y}
 ></CadRectMoveUtility>

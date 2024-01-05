@@ -1,16 +1,16 @@
 <script lang="ts">
-  import type { TypeElementOrGroup } from "$types/TypeCadComponent/TypeCadComponent";
+  import type { TypeElementOrGroup } from "$types/TypeSystem/projects/TypeCadComponent/TypeCadComponent";
   import CadElement from "$components/CAD/CadView/CadProject/CadComponents/CadElement/CadElement.svelte";
 
-  export let childElements: TypeElementOrGroup[];
+  export let compPropChildElements: TypeElementOrGroup[];
 </script>
 
-{#each childElements as thisElementObj}
+{#each compPropChildElements as thisElementObj}
   <g class="{thisElementObj.type}-{thisElementObj.geometryType}">
     {#if thisElementObj.type === "CadGroup"}
-      <svelte:self childElements={thisElementObj.elements} />
+      <svelte:self compPropChildElements={thisElementObj.elements} />
     {:else}
-      <CadElement CadElementObj={thisElementObj}></CadElement>
+      <CadElement compPropCadElementObj={thisElementObj}></CadElement>
     {/if}
   </g>
 {/each}
