@@ -44,7 +44,6 @@
   y={compPropY - correctionValueToCenter}
   rx={lineThickness}
   use:onDownInputEventThatSupportsAllDevicesAction={(e) => {
-    e.preventDefault();
     isThisComponentSelected = true;
     handleMouseDown(e, compPropCadElementObj);
   }}
