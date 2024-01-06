@@ -13,6 +13,8 @@ function setPositionOfLastSelectedCircleElement(
   const { position } = lastSelectedCircleStoreValue.dataElement.geometryData;
 
   position[axisName] = svgPoint?.[axisName];
+
+  lastSelectedCadElementStore.set(get(lastSelectedCadElementStore));
 }
 
 export { setPositionOfLastSelectedCircleElement };

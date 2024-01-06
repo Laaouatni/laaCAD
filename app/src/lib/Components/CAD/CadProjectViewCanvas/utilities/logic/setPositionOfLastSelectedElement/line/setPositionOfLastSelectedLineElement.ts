@@ -14,6 +14,8 @@ function setPositionOfLastSelectedLineElement(
   const { position } = lastSelectedLineStoreValue.dataElement.geometryData;
 
   position[startEndString][axisName] = svgPoint?.[axisName];
+
+  lastSelectedCadElementStore.set(get(lastSelectedCadElementStore));
 }
 
 export { setPositionOfLastSelectedLineElement };

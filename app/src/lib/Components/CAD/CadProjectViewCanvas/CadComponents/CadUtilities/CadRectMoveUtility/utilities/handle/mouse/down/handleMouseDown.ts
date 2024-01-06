@@ -18,6 +18,8 @@ function handleMouseDown(
 
     lineStore.pointToMove = startEndString;
   }
+
+  // lastSelectedCadElementStore.set(get(lastSelectedCadElementStore));
 }
 
 export { handleMouseDown };
