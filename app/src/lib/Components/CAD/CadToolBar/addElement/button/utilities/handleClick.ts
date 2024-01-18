@@ -1,0 +1,5 @@
+function handleClick() {
+
+}
+
+export { handleClick };
